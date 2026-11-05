@@ -1,0 +1,42 @@
+/* Section ocupando toda a tela */
+.loader-fullscreen-section {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   background-color: rgba(0, 0, 0, 0.4);
+   /* Fundo translúcido opcional para destacar */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 2000;
+}
+
+/* Div face que abriga o spinner */
+.loader-fullscreen-section>.face {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #222222;
+   padding: 24px 0;
+   border-radius: 16px;
+   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Spinner de carregamento */
+.spinner-ring {
+   width: 32px;
+   height: 32px;
+   border: 3px solid rgba(255, 255, 255, 0.3);
+   border-top-color: #ff4747;
+   /* Vermelho AliExpress */
+   border-radius: 50%;
+   animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+   to {
+      transform: rotate(360deg);
+   }
+}

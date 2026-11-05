@@ -1,0 +1,132 @@
+/* Section ocupando toda a tela com fundo escuro elegante */
+.cart-message-fullscreen-section {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   /* background-color: rgba(0, 0, 0, 0.5); */
+   backdrop-filter: blur(4px);
+   /* Efeito suave de desfoque no fundo */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 2000;
+   animation: fadeIn 0.25s ease-out;
+}
+
+/* Div face estruturada em card central */
+.cart-message-fullscreen-section>.face {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+   background-color: #ffffff;
+   color: #222222;
+   width: 90%;
+   max-width: 380px;
+   padding: 32px 24px;
+   border-radius: 20px;
+   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+   gap: 16px;
+   animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ícone de Sucesso Dourado/Vermelho */
+.success-icon-badge {
+   width: 50px;
+   height: 50px;
+   background-color: #fff0f0;
+   color: #ff4747;
+   /* Vermelho AliExpress */
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 4px;
+}
+
+/* Textos */
+.cart-message-content {
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+}
+
+.cart-message-title {
+   font-size: 18px;
+   font-weight: 700;
+   color: #111111;
+   margin: 0;
+}
+
+.cart-message-sub {
+   font-size: 13px;
+   color: #666666;
+   margin: 0;
+}
+
+/* Grupo de Botões */
+.cart-message-actions {
+   display: flex;
+   gap: 12px;
+   width: 100%;
+   margin-top: 8px;
+}
+
+.btn-action {
+   flex: 1;
+   padding: 12px 0;
+   border-radius: 25px;
+   font-size: 13px;
+   font-weight: 700;
+   cursor: pointer;
+   transition: all 0.2s ease;
+}
+
+/* Botão "Ver Produto" (Estilo secundário com fundo cinza claro e borda) */
+.btn-action.view-product {
+   background-color: #f7f7f7;
+   color: #333333;
+   border: 1px solid #e5e5e5;
+}
+
+.btn-action.view-product:hover {
+   background-color: #eeeeee;
+   border-color: #cccccc;
+}
+
+/* Botão "Continuar" (Estilo principal com o vermelho AliExpress) */
+.btn-action.continue-shopping {
+   background-color: #ff4747;
+   color: #ffffff;
+   border: none;
+   box-shadow: 0 4px 12px rgba(255, 71, 71, 0.3);
+}
+
+.btn-action.continue-shopping:hover {
+   background-color: #e03e3e;
+}
+
+/* Animações de Entrada */
+@keyframes fadeIn {
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
+}
+
+@keyframes scaleUp {
+   from {
+      opacity: 0;
+      transform: scale(0.95);
+   }
+
+   to {
+      opacity: 1;
+      transform: scale(1);
+   }
+}

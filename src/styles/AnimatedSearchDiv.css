@@ -1,0 +1,30 @@
+.aside-search-box {
+  position: relative;
+  overflow: hidden;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.animated-placeholder {
+  position: absolute;
+  left: auto;
+  width: 90%;
+  color: #888888;
+  font-size: 13px;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Estado de entrada (surge de baixo para o centro) */
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estado de saída (some subindo para cima) */
+.fade-out {
+  opacity: 0;
+  transform: translateY(-12px);
+}

@@ -1,0 +1,481 @@
+.ali-product-details-page {
+   width: 100%;
+   max-width: 1200px;
+   margin: 80px auto 40px auto;
+   padding: 0 16px;
+   box-sizing: border-box;
+}
+
+.product-details-container {
+   display: grid;
+   grid-template-columns: 450px 1fr;
+   gap: 32px;
+   background-color: #ffffff;
+   padding: 24px;
+   border-radius: 16px;
+   border: 1px solid #eeeeee;
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Galeria */
+.product-gallery-section {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+
+
+.btn-icon-circle {
+   width: 36px;
+   height: 36px;
+   border-radius: 50%;
+   background: rgba(255, 255, 255, 0.9);
+   border: none;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   color: #333333;
+}
+
+.thumbnail-list {
+   display: flex;
+   gap: 10px;
+}
+
+.thumbnail-item {
+   width: 64px;
+   height: 64px;
+   border-radius: 8px;
+   overflow: hidden;
+   border: 2px solid transparent;
+   cursor: pointer;
+}
+
+.thumbnail-item.active {
+   border-color: #ff4747;
+}
+
+.thumbnail-item img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+/* Detalhes */
+.product-info-section {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+.product-flash-tag {
+   background-color: #ffeae8;
+   color: #ff4747;
+   font-size: 11px;
+   font-weight: 700;
+   padding: 4px 10px;
+   border-radius: 4px;
+   width: fit-content;
+}
+
+.product-title-text {
+   font-size: 18px;
+   font-weight: 700;
+   color: #222222;
+   line-height: 1.4;
+   margin: 0;
+}
+
+.product-rating-row {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   font-size: 12px;
+}
+
+.stars-box {
+   display: flex;
+   align-items: center;
+   gap: 4px;
+   font-weight: 700;
+}
+
+.dot-divider {
+   color: #ccc;
+}
+
+.meta-text {
+   color: #666666;
+}
+
+/* Preço */
+.product-price-box {
+   background-color: #fff7f7;
+   padding: 12px 16px;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+}
+
+.price-main-row {
+   display: flex;
+   align-items: baseline;
+   gap: 6px;
+}
+
+.currency-symbol {
+   font-size: 16px;
+   font-weight: 700;
+   color: #ff4747;
+}
+
+.price-amount {
+   font-size: 28px;
+   font-weight: 900;
+   color: #ff4747;
+}
+
+.price-discount-badge {
+   background-color: #ff4747;
+   color: #fff;
+   font-size: 10px;
+   font-weight: 700;
+   padding: 2px 6px;
+   border-radius: 4px;
+   margin-left: 8px;
+}
+
+.original-price-row {
+   font-size: 12px;
+   color: #999999;
+   text-decoration: line-through;
+}
+
+.details-divider {
+   border: none;
+   border-top: 1px solid #eeeeee;
+   margin: 4px 0;
+}
+
+/* Container das opções de especificação */
+.spec-options-list {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+   margin-top: 6px;
+}
+
+/* Chip/Box individual */
+.spec-option-chip {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 8px 16px;
+   background-color: #f7f7f7;
+   border: 1px solid #e5e5e5;
+   border-radius: 8px;
+   cursor: pointer;
+   user-select: none;
+   transition: all 0.2s ease;
+}
+
+/* Texto interno */
+.spec-value {
+   font-size: 13px;
+   font-weight: 500;
+   color: #333333;
+}
+
+/* Hover suave */
+.spec-option-chip:hover {
+   border-color: #ff4747;
+   background-color: #f2f2f2;
+}
+
+/* --- ESTADO SELECIONADO --- */
+.spec-option-chip.selected {
+   background-color: #f2f2f2;
+   /* Fundo cinza claro */
+   border: 2px solid #ff4747;
+   /* Borda vermelha destaque AliExpress */
+   padding: 7px 15px;
+   /* Compensação de padding para borda de 2px */
+}
+
+.spec-option-chip.selected .spec-value {
+   font-weight: 700;
+   color: #222222;
+}
+
+.color-circle {
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   display: block;
+}
+
+/* Container das opções */
+.spec-options-list {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+   margin-top: 6px;
+   overflow-x: auto;
+   overflow: hidden;
+}
+
+/* Chip/Box individual de especificação */
+.spec-option-chip {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 8px 16px;
+   background-color: #f7f7f7;
+   border: 2px solid #e5e5e5;
+   border-radius: 8px;
+   cursor: pointer;
+   user-select: none;
+   transition: all 0.2s ease;
+}
+
+/* Texto interno da especificação */
+.spec-value {
+   font-size: 13px;
+   font-weight: 500;
+   color: #333333;
+}
+
+.spec-option-chip:hover {
+   border-color: #ff4747;
+   background-color: #f2f2f2;
+}
+
+
+.spec-option-chip.selected {
+   background-color: #f2f2f2;
+   border: 2px solid #ff4747;
+   padding: 8px 16px;
+}
+
+.spec-option-chip.selected .spec-value {
+   font-weight: 700;
+   color: #222222;
+}
+
+/* Selector de Quantidade */
+.quantity-selector {
+   display: flex;
+   align-items: center;
+   border: 1px solid #dddddd;
+   border-radius: 6px;
+   width: fit-content;
+}
+
+.qty-btn {
+   background: none;
+   border: none;
+   padding: 6px 12px;
+   cursor: pointer;
+   color: #555;
+}
+
+.qty-input {
+   width: 36px;
+   text-align: center;
+   border: none;
+   font-size: 13px;
+   font-weight: 700;
+}
+
+/* Frete */
+.shipping-guarantee-box {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   background-color: #fafafa;
+   padding: 12px;
+   border-radius: 8px;
+}
+
+.info-row {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.info-icon {
+   color: #ff4747;
+}
+
+.info-content {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+}
+
+.info-title {
+   font-size: 12px;
+   font-weight: 700;
+   color: #222;
+}
+
+.info-sub {
+   font-size: 11px;
+   color: #777;
+}
+
+/* Card da Loja */
+.store-card-info {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 10px 12px;
+   border: 1px solid #eeeeee;
+   border-radius: 8px;
+}
+
+.store-left {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
+.store-icon {
+   color: #ff4747;
+}
+
+.store-name {
+   font-size: 12px;
+   font-weight: 700;
+   display: block;
+}
+
+.store-rating {
+   font-size: 10px;
+   color: #777;
+}
+
+.btn-store-chat {
+   background: none;
+   border: 1px solid #dddddd;
+   padding: 6px 10px;
+   border-radius: 20px;
+   font-size: 11px;
+   display: flex;
+   align-items: center;
+   gap: 4px;
+   cursor: pointer;
+}
+
+/* Ações Desktop */
+.product-actions-desktop {
+   display: flex;
+   gap: 12px;
+   margin-top: 8px;
+}
+
+.btn-add-cart,
+.btn-buy-now {
+   flex: 1;
+   padding: 14px;
+   border-radius: 25px;
+   font-size: 14px;
+   font-weight: 700;
+   border: none;
+   cursor: pointer;
+}
+
+.btn-add-cart {
+   background-color: #ffedea;
+   color: #ff4747;
+}
+
+.btn-buy-now {
+   background-color: #ff4747;
+   color: #ffffff;
+}
+
+/* Mobile Bottom Bar */
+.mobile-bottom-bar {
+   display: none;
+}
+
+/* RESPONSIVIDADE MOBILE */
+@media (max-width: 768px) {
+   .ali-product-details-page {
+      margin-top: 60px;
+      padding: 0;
+   }
+
+   .product-details-container {
+      grid-template-columns: 1fr;
+      padding: 12px;
+      border-radius: 0;
+      gap: 16px;
+   }
+
+   .main-image-wrapper {
+      height: 320px;
+   }
+
+   .product-actions-desktop {
+      display: none;
+      /* Oculta os botões desktop no celular */
+   }
+
+   /* Exibe a barra inferior fixa para mobile */
+   .mobile-bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      border-top: 1px solid #eeeeee;
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      box-sizing: border-box;
+      z-index: 1000;
+   }
+
+   .mobile-action-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 10px;
+      color: #666;
+      padding: 0 10px;
+   }
+
+   .mobile-btn-group {
+      display: flex;
+      flex: 1;
+      gap: 6px;
+      margin-left: 8px;
+   }
+
+   .mobile-btn-cart,
+   .mobile-btn-buy {
+      flex: 1;
+      padding: 10px 0;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      border: none;
+   }
+
+   .mobile-btn-cart {
+      background-color: #ffedea;
+      color: #ff4747;
+   }
+
+   .mobile-btn-buy {
+      background-color: #ff4747;
+      color: #ffffff;
+   }
+}

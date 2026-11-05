@@ -1,0 +1,176 @@
+/* Reaproveita o container principal */
+.ali-product-details-page {
+   width: 100%;
+   max-width: 1200px;
+   margin: 80px auto 40px auto;
+   padding: 0 16px;
+   box-sizing: border-box;
+}
+
+.product-details-container {
+   display: grid;
+   grid-template-columns: 450px 1fr;
+   gap: 32px;
+   background-color: #ffffff;
+   padding: 24px;
+   border-radius: 16px;
+   border: 1px solid #eeeeee;
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Animação de Pulso (Shimmer / Fade) */
+@keyframes pulse {
+   0% {
+      background-color: #e5e7eb;
+   }
+
+   50% {
+      background-color: #f3f4f6;
+   }
+
+   100% {
+      background-color: #e5e7eb;
+   }
+}
+
+.skeleton-pulse {
+   animation: pulse 1.5s infinite ease-in-out;
+   border-radius: 8px;
+}
+
+/* Galeria Skeleton */
+.product-gallery-section {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+.skeleton-main-image {
+   width: 100%;
+   height: 420px;
+   border-radius: 12px;
+}
+
+.skeleton-thumbnail-list {
+   display: flex;
+   gap: 10px;
+}
+
+.skeleton-thumb {
+   width: 64px;
+   height: 64px;
+   border-radius: 8px;
+}
+
+/* Informações Skeleton */
+.product-info-section {
+   display: flex;
+   flex-direction: column;
+   gap: 14px;
+}
+
+.skeleton-line {
+   height: 14px;
+   border-radius: 4px;
+}
+
+.skeleton-line.short {
+   width: 30%;
+   height: 12px;
+}
+
+.skeleton-line.medium {
+   width: 50%;
+}
+
+.title-line-1 {
+   width: 95%;
+   height: 18px;
+}
+
+.title-line-2 {
+   width: 70%;
+   height: 18px;
+}
+
+/* Bloco de Preço */
+.skeleton-price-box {
+   width: 100%;
+   height: 60px;
+   border-radius: 10px;
+   margin-top: 4px;
+}
+
+/* Chips de Variação */
+.skeleton-spec-list {
+   display: flex;
+   gap: 10px;
+   margin-top: 6px;
+}
+
+.skeleton-chip {
+   width: 70px;
+   height: 36px;
+   border-radius: 8px;
+}
+
+/* Caixa de Quantidade */
+.skeleton-qty-box {
+   width: 110px;
+   height: 36px;
+   border-radius: 6px;
+   margin-top: 6px;
+}
+
+/* Frete e Loja */
+.skeleton-shipping-box {
+   width: 100%;
+   height: 70px;
+   border-radius: 8px;
+}
+
+.skeleton-store-box {
+   width: 100%;
+   height: 50px;
+   border-radius: 8px;
+}
+
+/* Botões de Ação Desktop */
+.skeleton-actions-row {
+   display: flex;
+   gap: 12px;
+   margin-top: 8px;
+}
+
+.skeleton-btn {
+   flex: 1;
+   height: 48px;
+   border-radius: 25px;
+}
+
+/* Divisor */
+.details-divider {
+   border: none;
+   border-top: 1px solid #eeeeee;
+   margin: 4px 0;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+   .ali-product-details-page {
+      margin-top: 60px;
+      padding: 0;
+   }
+
+   .product-details-container {
+      grid-template-columns: 1fr;
+      padding: 12px;
+      border-radius: 0;
+      gap: 16px;
+   }
+
+   .skeleton-main-image {
+      height: 320px;
+      border-radius: 0;
+   }
+}

@@ -1,0 +1,127 @@
+.container-list-cards {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+   gap: 12px;
+}
+
+.container-item {
+   background-color: #ffffff;
+   border-radius: 8px;
+   overflow: hidden;
+   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+   cursor: pointer;
+   border: 1px solid #f0f0f0;
+   padding: 10px 0;
+}
+
+.container-item:hover {
+   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+   transform: translateY(-2px);
+}
+
+.container-item>.face {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+}
+
+
+.image-wrapper {
+   position: relative;
+   width: 100%;
+   padding-top: 100%;
+   background-color: #f9f9f9;
+   overflow: hidden;
+}
+
+.image-wrapper img {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+.discount-badge {
+   position: absolute;
+   bottom: 8px;
+   left: 8px;
+   background-color: #ff2d2d;
+   color: #ffffff;
+   font-size: 11px;
+   font-weight: 700;
+   padding: 2px 6px;
+   border-radius: 4px;
+}
+
+/* Informações do Produto */
+.product-info {
+   padding: 10px;
+   display: flex;
+   flex-direction: column;
+   gap: 6px;
+   flex-grow: 1;
+}
+
+/* Nome do produto (máximo de 2 linhas) */
+.name {
+   font-size: 13px;
+   color: #222222;
+   line-height: 1.3;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   margin: 0;
+}
+
+/* Preço em destaque (Vermelho AliExpress) */
+.price-container {
+   display: flex;
+   align-items: baseline;
+   gap: 2px;
+   color: #ff4747;
+   margin: 0;
+}
+
+.currency {
+   font-size: 11px;
+   font-weight: 600;
+}
+
+.price {
+   font-size: 16px;
+   font-weight: 700;
+}
+
+/* Avaliações e Vendas */
+.meta-info {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 11px;
+   color: #757575;
+   margin-top: auto;
+}
+
+.star {
+   display: flex;
+   align-items: center;
+   gap: 2px;
+   color: #333;
+   font-weight: 500;
+}
+
+
+.Recommended {
+   padding: 20px 0;
+}
+
+
+@media (max-width : 680px) {
+   .container-list-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+   }
+
+}

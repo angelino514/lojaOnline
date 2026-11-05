@@ -1,0 +1,132 @@
+/* Section ocupando toda a tela com fundo escuro e desfoque */
+.cart-error-fullscreen-section {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   /* background-color: rgba(0, 0, 0, 0.5); */
+   backdrop-filter: blur(4px);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 2000;
+   animation: fadeIn 0.25s ease-out;
+}
+
+/* Div face estruturada em card central */
+.cart-error-fullscreen-section>.face {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+   background-color: #ffffff;
+   color: #222222;
+   width: 90%;
+   max-width: 380px;
+   padding: 32px 24px;
+   border-radius: 20px;
+   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+   gap: 16px;
+   animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ícone de Erro */
+.error-icon-badge {
+   width: 50px;
+   height: 50px;
+   background-color: #fff1f0;
+   color: #e53935;
+   /* Vermelho de Alerta */
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 4px;
+}
+
+/* Textos */
+.cart-error-content {
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+}
+
+.cart-error-title {
+   font-size: 18px;
+   font-weight: 700;
+   color: #111111;
+   margin: 0;
+}
+
+.cart-error-sub {
+   font-size: 13px;
+   color: #666666;
+   margin: 0;
+   line-height: 1.4;
+}
+
+/* Grupo de Botões */
+.cart-error-actions {
+   display: flex;
+   gap: 12px;
+   width: 100%;
+   margin-top: 8px;
+}
+
+.btn-action {
+   flex: 1;
+   padding: 12px 0;
+   border-radius: 25px;
+   font-size: 13px;
+   font-weight: 700;
+   cursor: pointer;
+   transition: all 0.2s ease;
+}
+
+/* Botão "Cancelar" */
+.btn-action.cancel {
+   background-color: #f7f7f7;
+   color: #333333;
+   border: 1px solid #e5e5e5;
+}
+
+.btn-action.cancel:hover {
+   background-color: #eeeeee;
+   border-color: #cccccc;
+}
+
+/* Botão "Tentar Novamente" */
+.btn-action.retry {
+   background-color: #222222;
+   color: #ffffff;
+   border: none;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-action.retry:hover {
+   background-color: #000000;
+}
+
+/* Animações de Entrada */
+@keyframes fadeIn {
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
+}
+
+@keyframes scaleUp {
+   from {
+      opacity: 0;
+      transform: scale(0.95);
+   }
+
+   to {
+      opacity: 1;
+      transform: scale(1);
+   }
+}

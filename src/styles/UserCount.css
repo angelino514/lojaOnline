@@ -1,0 +1,344 @@
+.ali-account-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 80px auto 40px auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.account-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.account-sidebar {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #eeeeee;
+  padding: 20px 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.user-mini-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.user-avatar-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #fff0f0;
+  color: #ff4747;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-info h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #222222;
+  margin: 0 0 2px 0;
+}
+
+.user-info span {
+  font-size: 11px;
+  color: #777777;
+  word-break: break-all;
+}
+
+.account-nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555555;
+  text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  background-color: #fafafa;
+  color: #ff4747;
+}
+
+.nav-item.active {
+  background-color: #fff0f0;
+  color: #ff4747;
+  font-weight: 600;
+}
+
+.logout-btn {
+  margin-top: 10px;
+  color: #e53935;
+}
+
+.logout-btn:hover {
+  background-color: #fff5f5;
+  color: #e53935;
+}
+
+/* Conteúdo Principal */
+.account-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.account-welcome-card {
+  background: linear-gradient(135deg, #ff4747 0%, #ff6b6b 100%);
+  border-radius: 12px;
+  padding: 24px;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(255, 71, 71, 0.2);
+}
+
+.welcome-text h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+
+.welcome-text p {
+  font-size: 13px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.account-tier-badge {
+  background-color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #333333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Seções Padrão */
+.account-section {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #eeeeee;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-header h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #222222;
+  margin: 0;
+}
+
+.view-all-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ff4747;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+}
+
+.btn-edit-profile {
+  background: none;
+  border: 1px solid #dddddd;
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-edit-profile:hover {
+  border-color: #ff4747;
+  color: #ff4747;
+}
+
+/* Grade de Status de Pedidos */
+.orders-status-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  border-radius: 8px;
+  background-color: #fafafa;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.status-item:hover {
+  background-color: #f5f5f5;
+}
+
+.status-icon-wrapper {
+  position: relative;
+  color: #555555;
+}
+
+.status-counter {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: #ff4747;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-item span:last-child {
+  font-size: 11px;
+  font-weight: 600;
+  color: #444444;
+  text-align: center;
+}
+
+/* Informações Pessoais Grid */
+.info-grid-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: #fafafa;
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+.info-label {
+  font-size: 11px;
+  color: #777777;
+}
+
+.info-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222222;
+}
+
+/* Endereço Preview */
+.address-card-preview {
+  display: flex;
+  gap: 14px;
+  background-color: #fafafa;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px dashed #dddddd;
+}
+
+.address-icon {
+  color: #ff4747;
+  flex-shrink: 0;
+}
+
+.address-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.address-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.address-details p {
+  font-size: 12px;
+  color: #666666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+  .ali-account-page {
+    margin-top: 60px;
+    padding: 0 8px;
+  }
+
+  .account-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .account-sidebar {
+    padding: 14px;
+  }
+
+  .account-welcome-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .orders-status-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .info-grid-card {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,258 @@
+/* Container Principal do Hero Banner */
+.ali-hero-banner {
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+}
+
+/* Banner Principal Estilo AliExpress */
+.ali-hero-main-banner {
+   background: linear-gradient(135deg, #ff2d2d 0%, #ff5e36 100%);
+   border-radius: 12px;
+   padding: 20px;
+   color: #ffffff;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   box-shadow: 0 4px 15px rgba(255, 45, 45, 0.25);
+   position: relative;
+   overflow: hidden;
+}
+
+.hero-banner-left {
+   display: flex;
+   flex-direction: column;
+   gap: 6px;
+   z-index: 2;
+}
+
+.hero-tag-flash {
+   display: flex;
+   align-items: center;
+   gap: 4px;
+   background-color: rgba(0, 0, 0, 0.2);
+   width: fit-content;
+   padding: 3px 8px;
+   border-radius: 20px;
+   font-size: 11px;
+   font-weight: 700;
+   text-transform: uppercase;
+}
+
+.ali-hero-main-banner h2 {
+   font-size: 22px;
+   font-weight: 800;
+   margin: 0;
+   line-height: 1.2;
+}
+
+.ali-hero-main-banner p {
+   font-size: 12px;
+   opacity: 0.9;
+   margin: 0;
+}
+
+.hero-timer {
+   display: flex;
+   align-items: center;
+   gap: 6px;
+   background: rgba(255, 255, 255, 0.2);
+   padding: 4px 10px;
+   border-radius: 6px;
+   width: fit-content;
+   font-size: 11px;
+   margin-top: 4px;
+}
+
+.hero-banner-right {
+   background: rgba(255, 255, 255, 0.15);
+   padding: 12px 18px;
+   border-radius: 50%;
+   border: 2px dashed rgba(255, 255, 255, 0.5);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.hero-big-discount {
+   font-size: 14px;
+   font-weight: 900;
+   letter-spacing: 0.5px;
+   text-transform: uppercase;
+}
+
+/* Wrapper para cada seção de cards */
+.hero-section-wrapper {
+   background-color: #ffffff;
+   border: 1px solid #eeeeee;
+   border-radius: 12px;
+   padding: 12px;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+/* Cabeçalho de cada seção */
+.hero-section-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 4px;
+}
+
+.hero-subtitle-link {
+   font-size: 12px;
+   color: #ff4747;
+   font-weight: 600;
+   cursor: pointer;
+}
+
+/* Títulos com animação */
+.ali-hero-banner h1 {
+   font-size: 16px;
+   font-weight: 800;
+   color: #222222;
+   margin: 0;
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+
+   animation: pulseBannerText 2.5s infinite ease-in-out;
+   transform-origin: center;
+}
+
+@keyframes pulseBannerText {
+   0% {
+      transform: scale(1);
+   }
+
+   50% {
+      transform: scale(1.01);
+   }
+
+   100% {
+      transform: scale(1);
+   }
+}
+
+/* --- CARROSSEL COM BOTÕES DE NAVEGAÇÃO --- */
+.carousel-container {
+   position: relative;
+   display: flex;
+   align-items: center;
+}
+
+/* Estilo dos Botões de Seta (Left / Right) */
+.carousel-btn {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background-color: rgba(255, 255, 255, 0.9);
+   border: 1px solid #ddd;
+   color: #333;
+   width: 32px;
+   height: 32px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   z-index: 10;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+   transition: background-color 0.2s, transform 0.2s;
+}
+
+.carousel-btn:hover {
+   background-color: #ffffff;
+   color: #ff4747;
+   border-color: #ff4747;
+   transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-btn.left {
+   left: -14px;
+}
+
+.carousel-btn.right {
+   right: -14px;
+}
+
+/* --- SCROLL HORIZONTAL INFINITO --- */
+.hero-conteiners {
+   display: flex;
+   gap: 12px;
+   overflow-x: auto;
+   scroll-behavior: smooth;
+   padding-bottom: 6px;
+   width: 100%;
+   scrollbar-width: none;
+   -ms-overflow-style: none;
+}
+
+.hero-conteiners::-webkit-scrollbar {
+   display: none;
+}
+
+/* Estilo do Card Individual */
+.hero-card {
+   flex: 0 0 150px;
+   background-color: #ffffff;
+   border: 1px solid #f0f0f0;
+   border-radius: 8px;
+   overflow: hidden;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   cursor: pointer;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-card:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.hero-badge-discount {
+   position: absolute;
+   top: 6px;
+   left: 6px;
+   background-color: #ff2d2d;
+   color: #ffffff;
+   font-size: 9px;
+   font-weight: 700;
+   padding: 2px 5px;
+   border-radius: 4px;
+   z-index: 2;
+}
+
+.hero-card-img {
+   width: 100%;
+   height: 120px;
+   object-fit: cover;
+   background-color: #f9f9f9;
+}
+
+.hero-card-info {
+   padding: 8px;
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+}
+
+.hero-card-name {
+   font-size: 11px;
+   color: #333333;
+   line-height: 1.2;
+   display: -webkit-box;
+   -webkit-line-clamp: 1;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.hero-card-price {
+   font-size: 13px;
+   font-weight: 700;
+   color: #ff4747;
+}

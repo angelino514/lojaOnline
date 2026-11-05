@@ -1,0 +1,43 @@
+.ali-footer {
+   background-color: #ffffff;
+   border-top: 1px solid #f2e2e4;
+   padding: 40px 20px 20px 20px;
+   margin-top: 40px;
+}
+
+.ali-footer-container {
+   max-width: 1200px;
+   margin: 0 auto;
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   gap: 30px;
+}
+
+.ali-footer-col h4 {
+   font-size: 14px;
+   color: #222222;
+   margin-bottom: 12px;
+}
+
+.ali-footer-col a {
+   display: block;
+   color: #666666;
+   font-size: 12px;
+   text-decoration: none;
+   margin-bottom: 8px;
+   transition: color 0.2s;
+}
+
+.ali-footer-col a:hover {
+   color: #ff4747;
+}
+
+.ali-footer-bottom {
+   max-width: 1200px;
+   margin: 30px auto 0 auto;
+   padding-top: 20px;
+   border-top: 1px solid #f7e6e9;
+   text-align: center;
+   font-size: 11px;
+   color: #888888;
+}

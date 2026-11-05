@@ -1,0 +1,187 @@
+.ali-image-gallery-wrapper {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+.gallery-main-container {
+   position: relative;
+   width: 100%;
+   height: 400px;
+   border-radius: 12px;
+   overflow: hidden;
+   background-color: #f9f9f9;
+   border: 1px solid #f0f0f0;
+   display: flex;
+   align-items: center;
+}
+
+/* Faixa de rolagem horizontal com efeito Snap */
+.gallery-scroll-track {
+   display: flex;
+   width: 100%;
+   height: 100%;
+   overflow-x: auto;
+   scroll-snap-type: x mandatory;
+   scroll-behavior: smooth;
+   scrollbar-width: none;
+   -ms-overflow-style: none;
+}
+
+.gallery-scroll-track::-webkit-scrollbar {
+   display: none;
+}
+
+.gallery-slide-item {
+   flex: 0 0 100%;
+   width: 100%;
+   height: 100%;
+   scroll-snap-align: start;
+}
+
+.gallery-slide-item img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+/* Badge de Desconto */
+.badge-discount-float {
+   position: absolute;
+   top: 12px;
+   left: 12px;
+   background-color: #ff4747;
+   color: #ffffff;
+   font-size: 12px;
+   font-weight: 800;
+   padding: 4px 8px;
+   border-radius: 6px;
+   z-index: 10;
+}
+
+/* Botões de Navegação (Left / Right) */
+.gallery-nav-btn {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background-color: rgba(255, 255, 255, 0.85);
+   border: 1px solid #ddd;
+   color: #333;
+   width: 36px;
+   height: 36px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   z-index: 10;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+   transition: background-color 0.2s, transform 0.2s, border-color 0.2s;
+}
+
+.gallery-nav-btn:hover {
+   background-color: #ffffff;
+   color: #ff4747;
+   border-color: #ff4747;
+   transform: translateY(-50%) scale(1.05);
+}
+
+.favorite-active {
+   color: #ef4444;
+}
+
+.gallery-nav-btn.left {
+   left: 10px;
+}
+
+.gallery-nav-btn.right {
+   right: 10px;
+}
+
+/* Ações Flutuantes */
+.gallery-actions-overlay {
+   position: absolute;
+   top: 12px;
+   right: 12px;
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+   z-index: 10;
+}
+
+.btn-icon-circle {
+   width: 36px;
+   height: 36px;
+   border-radius: 50%;
+   background: rgba(255, 255, 255, 0.9);
+   border: none;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+   color: #333333;
+   transition: color 0.2s;
+}
+
+.favorite-active {
+   color: #ff4747;
+}
+
+.redb {
+   color: #ff4747;
+}
+
+/* --- ESTILO DAS MINIATURAS SINCRONIZADAS --- */
+.thumbnail-list {
+   display: flex;
+   gap: 10px;
+   overflow-x: auto;
+   padding-bottom: 4px;
+   scrollbar-width: none;
+}
+
+.thumbnail-list::-webkit-scrollbar {
+   display: none;
+}
+
+.thumbnail-item {
+   width: 64px;
+   height: 64px;
+   border-radius: 8px;
+   overflow: hidden;
+   border: 2px solid transparent;
+   cursor: pointer;
+   flex-shrink: 0;
+   transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.thumbnail-item:hover {
+   transform: translateY(-2px);
+}
+
+.thumbnail-item.active {
+   border-color: #ff4747;
+   /* Borda vermelha da miniatura ativa */
+}
+
+.thumbnail-item img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+   .gallery-main-container {
+      height: 320px;
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+   }
+
+   .gallery-nav-btn {
+      display: none;
+   }
+}

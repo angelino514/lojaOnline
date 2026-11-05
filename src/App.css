@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+}
+
+
+html {
+  width: 100%;
+}
+
+body {
+  width: 100%;
+}
+
+.face {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+  overflow-x: clip;
+}
+
+.span-text {
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.main {
+  margin-top: 80px;
+  width: 100%;
+}
+
+.main-app-containers {
+  margin-top: 80px;
+}
+
+
+
+input {
+  outline: none;
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.sizes-spans {
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.span-cart {
+  position: absolute;
+  transform: translateY(-12px) translateX(10px);
+  color: #fff;
+  font-weight: 700;
+  background-color: red;
+  padding: 5px;
+  border-radius: 30px;
+  aspect-ratio: 1/1;
+  font-size: 12px;
+}
+
+@media (max-width : 730px) {
+  .face {
+    width: 90%;
+  }
+
+  .hiden-btn {
+    display: none !important;
+  }
+}

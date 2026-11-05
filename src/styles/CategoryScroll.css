@@ -1,0 +1,118 @@
+.categoryScroll {
+   width: 100%;
+   padding: 16px 0;
+}
+
+/* Container principal (aside.face) configurado para scroll horizontal e posicionamento dos botões */
+.categoryScroll>.face {
+   position: relative;
+   display: flex;
+   align-items: center;
+}
+
+/* Sub-container interno onde ficam os cards com rolagem oculta */
+.categoryScroll>.face .category-scroll-inner {
+   display: flex;
+   gap: 16px;
+   width: 100%;
+   overflow-x: auto;
+   scroll-behavior: smooth;
+   padding: 8px 4px;
+
+   /* Oculta a barra de rolagem (mantém scroll por toque/mouse/botões) */
+   scrollbar-width: none;
+   -ms-overflow-style: none;
+}
+
+.categoryScroll>.face .category-scroll-inner::-webkit-scrollbar {
+   display: none;
+}
+
+/* Estilo do Card Individual */
+.categoryScroll>.face .container-categoryScroll {
+   flex: 0 0 auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   width: 110px;
+   height: 100px;
+   background-color: #ffffff;
+   border: 1px solid #e2e8f0;
+   border-radius: 12px;
+   cursor: pointer;
+   user-select: none;
+   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+   gap: 8px;
+   padding: 8px;
+}
+
+.categoryScroll>.face .container-categoryScroll:hover {
+   transform: translateY(-3px);
+   border-color: #3b82f6;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Imagem da categoria */
+.categoryScroll>.face .category-icon-wrapper {
+   width: 44px;
+   height: 44px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 50%;
+   background-color: #f1f5f9;
+   overflow: hidden;
+}
+
+.categoryScroll>.face .category-icon-wrapper img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+/* Nome da Categoria */
+.categoryScroll>.face .category-title {
+   font-size: 0.85rem;
+   font-weight: 500;
+   color: #1e293b;
+   text-align: center;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   width: 100%;
+}
+
+/* Botões de Scroll Lateral com Lucide Icons */
+.categoryScroll>.face .scroll-btn {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   z-index: 10;
+   background-color: #ffffff;
+   border: 1px solid #cbd5e1;
+   border-radius: 50%;
+   width: 36px;
+   height: 36px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+   color: #334155;
+   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.categoryScroll>.face .scroll-btn:hover {
+   background-color: #f8fafc;
+   color: #0f172a;
+   transform: translateY(-50%) scale(1.05);
+}
+
+.categoryScroll>.face .scroll-btn.left {
+   left: 0px;
+}
+
+.categoryScroll>.face .scroll-btn.right {
+   right: 0px;
+}
