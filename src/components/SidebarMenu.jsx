@@ -4,10 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import filtercategories from '../modules/categories';
 import { useContext } from 'react'
 import { CartContext } from '../App'
+import Loading from './Loading';
 
 export default function SidebarMenu({ pagin }) {
 
-  const newProducts = filtercategories()
+  const newProducts = filtercategories().products
+  const loading = filtercategories().loading
+
   const navegation = useNavigate()
 
   const { setSidbarAtivo } = useContext(CartContext)
@@ -35,7 +38,6 @@ export default function SidebarMenu({ pagin }) {
   ]
 
 
-
   return (
     <section className="section-sidebar">
       <aside className='face'>
@@ -45,21 +47,22 @@ export default function SidebarMenu({ pagin }) {
         </div>
 
         <nav className='SidebarMenu'>
-          <ul className='e-menu-list'>
-            {newProducts.map((item) => (
-              <li className='li-e-menu' key={item.id}
-                onClick={() => { statusSearch(item.categoria) }}
-              >
-                <div className='li-content'>
-                  <span className='category-icon'>
-                    <img src={`https://banck-end.vercel.app/imagens/${item.id}`} alt={item.nome || item.categoria} />
-                  </span>
-                  <span className='category-name'>{item.categoria}</span>
-                </div>
-                <ChevronRight size={16} className='chevron-icon' />
-              </li>
-            ))}
-          </ul>
+          {loading ? <Loading /> :
+            <ul className='e-menu-list'>
+              {newProducts.map((item) => (
+                <li className='li-e-menu' key={item.id}
+                  onClick={() => { statusSearch(item.categoria) }}
+                >
+                  <div className='li-content'>
+                    <span className='category-icon'>
+                      <img src={`https://banck-end.vercel.app/imagens/${item.id}`} alt={item.nome || item.categoria} />
+                    </span>
+                    <span className='category-name'>{item.categoria}</span>
+                  </div>
+                  <ChevronRight size={16} className='chevron-icon' />
+                </li>
+              ))}
+            </ul>}
         </nav>
 
         <div className="sidebar-actions">

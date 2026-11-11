@@ -47,10 +47,6 @@ export default function HeroBanner() {
                <h2>Descontos de até 80%</h2>
                <p>Frete grátis e ofertas imperdíveis por tempo limitado</p>
 
-               <div className="hero-timer">
-                  <Clock size={14} />
-                  <span>Termina em: <strong>02:45:12</strong></span>
-               </div>
             </div>
 
             <div className="hero-banner-right">

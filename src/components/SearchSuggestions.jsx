@@ -1,17 +1,14 @@
 import "../styles/SearchSuggestions.css";
-import { ArrowUpLeft, Search } from "lucide-react";
-import transformText from "../modules/transfomer";
+import { ArrowUpLeft, Search, X } from "lucide-react";
 import { useState, useRef, useEffect, useContext } from 'react'
 import { useNavigate } from "react-router-dom";
 import { CartContext } from '../App'
 
 
-
 export default function SearchSuggestions({ searchProducts }) {
 
-   const { oldSearches, productList } = useContext(CartContext)
+   const { oldSearches, productList, suggestons, setSuggestons } = useContext(CartContext)
    const [values, setValues] = useState('')
-
    const navigation = useNavigate()
 
    function handleghange(e) {
@@ -29,14 +26,13 @@ export default function SearchSuggestions({ searchProducts }) {
       searchProducts(values)
       setValues('')
    }
-
    const inputRef = useRef(null)
-
    useEffect(() => {
       inputRef.current?.focus()
    }, [])
 
    function viewDetails(id, categoria) {
+      setSuggestons(false)
       navigation(`/ProductDetails/${id}/Categories/${categoria}`)
    }
 
@@ -46,20 +42,25 @@ export default function SearchSuggestions({ searchProducts }) {
             <div className="face">
 
                {/* Caixa de Pesquisa */}
-               <div className="container-input-box">
-                  <Search className="search-icon-input" size={18} />
-                  <input ref={inputRef}
-                     type="text" placeholder="O que você está procurando?"
-                     onChange={handleghange}
-                     onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                           activityFinaly()
-                        }
-                     }}
-                  />
-                  <button className="search-submit-btn"
-                     onClick={() => { activityFinaly() }}
-                  >Buscar</button>
+               <div className="container-box-all-caixa">
+                  <button className="btn-close-searchSugestons">
+                     <X size={20} onClick={() => { setSuggestons(false) }} />
+                  </button>
+                  <div className="container-input-box">
+                     <Search className="search-icon-input" size={18} />
+                     <input ref={inputRef}
+                        type="text" placeholder="O que você está procurando?"
+                        onChange={handleghange}
+                        onKeyDown={(e) => {
+                           if (e.key === 'Enter') {
+                              activityFinaly()
+                           }
+                        }}
+                     />
+                     <button className="search-submit-btn"
+                        onClick={() => { activityFinaly() }}
+                     >Buscar</button>
+                  </div>
                </div>
 
                {/* Pesquisas antigas */}
@@ -76,7 +77,6 @@ export default function SearchSuggestions({ searchProducts }) {
                      ))}
                   </div>
                </div>
-
 
                {/* List Cards de Produtos */}
                <div className="suggested-products-section">
@@ -100,7 +100,6 @@ export default function SearchSuggestions({ searchProducts }) {
                      ))}
                   </div>
                </div>
-
             </div>
          </div>
       </>

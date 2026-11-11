@@ -5,7 +5,8 @@ import filtercategories from '../modules/categories';
 export default function CategoryMenu({ pagin, setAtivoSugestons, sidbarAtivo, setSidbarAtivo }) {
 
 
-  const newProducts = filtercategories()
+  const newProducts = filtercategories().products
+  const loading = filtercategories().loading
 
   function ativesIttens() {
     setAtivoSugestons(false)

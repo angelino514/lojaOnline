@@ -12,7 +12,6 @@ export default function UserCount() {
    const location = useLocation();
    const [userdatas, setuserDatas] = useState([])
 
-
    useEffect(() => {
       async function verificarSessao() {
          try {
@@ -25,7 +24,6 @@ export default function UserCount() {
             );
 
             const data = await response.json();
-            console.log(data)
             setuserDatas(data.usuario)
             setSection(response.ok && data.success)
          } catch (error) {
@@ -34,13 +32,9 @@ export default function UserCount() {
             setLoading(false)
          }
       }
-
       verificarSessao();
    }, [])
 
-   const isAuthPage =
-      location.pathname === "/UserCount" ||
-      location.pathname === "/UserCount/Register";
 
    return (
       <>
@@ -48,15 +42,7 @@ export default function UserCount() {
          <MenuMobile />
 
          <main className="main-app-containers">
-            {loading ? (
-               <Loading />
-            ) : section && isAuthPage ? (
-               <Navigate to="/UserCount/MyAccount" replace />
-            ) : !section && !isAuthPage ? (
-               <Navigate to="/UserCount" replace />
-            ) : (
-               <Outlet context={{ userdatas }} />
-            )}
+            {loading ? (<Loading />) : (<Outlet context={{ userdatas }} />)}
          </main>
       </>
    );

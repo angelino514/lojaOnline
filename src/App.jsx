@@ -18,16 +18,17 @@ import UserProfile from './components/UserProfile'
 import Orders from './components/Orders'
 import Favorites from './components/Favorites'
 import filtercategories from './modules/categories';
+import Checkout from './pages/Checkout';
 
 
 export const CartContext = createContext()
 
 function App() {
 
-
-   const productList = filtercategories()
+   const productList = filtercategories().products
    const [cartNumber, setCartNumber] = useState(0)
    const [sidbarAtivo, setSidbarAtivo] = useState(false)
+   const [suggestons, setSuggestons] = useState(false)
    const [oldSearches, setOldSearches] = useState([])
 
    useEffect(() => {
@@ -71,7 +72,8 @@ function App() {
    return (
       <CartContext.Provider value={{
          cartNumber, setCartNumber, productList,
-         sidbarAtivo, setSidbarAtivo, oldSearches
+         sidbarAtivo, setSidbarAtivo, oldSearches,
+         suggestons, setSuggestons
       }}>
          <BrowserRouter>
             <Routes>
@@ -79,27 +81,18 @@ function App() {
                   <Route index element={<Start />} />
                </Route>
 
-
                <Route path='/Categories' element={<Categories />} />
                <Route path='/Cart' element={<Cart />} />
 
-               <Route path='/UserCount' element={<UserCount />}>
-                  <Route index element={<Login />} />
-                  <Route path='Register' element={<Register />} />
-
-                  <Route path="/UserCount" element={<UserCount />}>
-                     <Route index element={<Login />} />
-
-                     <Route path="Register" element={<Register />} />
-
-                     <Route path="MyAccount" element={<MyAccount />}>
-                        <Route index element={<Navigate to="Profile" replace />} />
-                        <Route path="Profile" element={<UserProfile />} />
-                        <Route path="Orders" element={<Orders />} />
-                        <Route path="Favorites" element={<Favorites />} />
-                     </Route>
+               <Route path="/UserCount" element={<UserCount />}>
+                  <Route path="MyAccount" element={<MyAccount />}>
+                     <Route path="UserProfile" element={<UserProfile />} />
+                     <Route path="Orders" element={<Orders />} />
+                     <Route path="Favorites" element={<Favorites />} />
                   </Route>
 
+                  <Route path="Login" element={<Login />} />
+                  <Route path="Register" element={<Register />} />
                </Route>
 
                <Route path="/Result/:action/:values" element={<Result />}>
@@ -107,6 +100,7 @@ function App() {
                   <Route path='ReferencesResult' element={<ReferencesResult />} />
                </Route>
                <Route path='/ProductDetails/:id/:action/:values' element={<ProductDetails />} />
+               <Route path='/Checkout' element={<Checkout />} />
             </Routes>
          </BrowserRouter>
       </CartContext.Provider>

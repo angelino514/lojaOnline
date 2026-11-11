@@ -5,7 +5,10 @@ import '../styles/CategoryScroll.css';
 import filtercategories from '../modules/categories';
 
 export default function CategoryScroll() {
-   const newProducts = filtercategories()
+
+   const newProducts = filtercategories().products
+   const loading = filtercategories().loading
+   
    const scrollContainerRef = useRef(null);
    const navigation = useNavigate();
 

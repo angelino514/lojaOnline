@@ -73,7 +73,6 @@ export default function ImageGallery({ images = [], id }) {
    return (
       <div className="ali-image-gallery-wrapper">
 
-
          <div className="gallery-main-container">
             <span className="badge-discount-float">5%</span>
 
@@ -97,8 +96,6 @@ export default function ImageGallery({ images = [], id }) {
                   </div>
                ))}
             </div>
-
-
 
             <button
                className="gallery-nav-btn right"

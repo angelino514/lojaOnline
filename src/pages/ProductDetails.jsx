@@ -7,16 +7,14 @@ import CartErrorMessageSection from "../components/CartErrorMessageSection";
 import ProductDetailsSkeleton from "../components/ProductDetailsSkeleton";
 import "../styles/ProductDetails.css";
 import {
-  Star,
   Truck,
   ShieldCheck,
   ChevronRight,
-  Store,
-  MessageSquare,
   Minus,
   Plus
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from '../App'
 import { useContext } from "react"
 import Header from "../components/Header";
@@ -28,6 +26,7 @@ export default function ProductDetails() {
 
   const [product, setproduct] = useState([])
   const { setCartNumber } = useContext(CartContext)
+  const navigate = useNavigate();
 
   const [quantidade, setquantidade] = useState(1)
   const [espSelected, setEspSelected] = useState(null)
@@ -179,6 +178,27 @@ export default function ProductDetails() {
     } finally { setLoadingAddCart(false) }
   }
 
+  function buyNow() {
+
+    if (!product?.id) return;
+    const produtoSelecionado = {
+      id: id,
+      produto_id: product.id,
+      nome: product.nome,
+      preco: Number(product.preco),
+      quantidade: Number(quantidade),
+      promocao: product.promocao,
+      especificacao_valor: espSelected,
+      outra_especificacao_valor: otherEspSelected,
+    };
+
+    navigate("/Checkout", {
+      state: {
+        produtos: [produtoSelecionado]
+      }
+    });
+  }
+
   const newProducts = products.filter(p => p.id != id)
   return (
 
@@ -190,149 +210,162 @@ export default function ProductDetails() {
 
 
       {loadingProduct ? <ProductDetailsSkeleton /> :
+
         <div className="ali-product-details-page">
-          <div className="product-details-container">
+          <div className="face">
 
-            {/* --- COLUNN Left */}
-            <div className="product-gallery-section">
-              <ImageGallery images={product.images} id={product.id} />
-            </div>
-
-            {/* --- COLUNN Rith */}
-            <div className="product-info-section">
-
-              {/* Tag de Super Oferta */}
-              <div className="product-flash-tag">
-                <span>SUPER OFERTA</span>
+            <div className="product-details-container">
+              {/* --- COLUNN Left */}
+              <div className="product-gallery-section">
+                <div className="face">
+                  <ImageGallery images={product.images} id={product.id} />
+                </div>
               </div>
 
+              {/* --- COLUNN Rith */}
+              <div className="product-info-section">
+                <div className="face">
 
-              {/* Título do Produto */}
-              <h1 className="product-title-text">{product.nome}</h1>
+                  <div className="product-flash-tag">
+                    <span>SUPER OFERTA</span>
+                  </div>
 
-              {/* Despription */}
-              <div className="">
-                <p> {product.descricao} </p>
-              </div>
+                  <h1 className="product-title-text">{product.nome}</h1>
+                  {/* Despription */}
+                  <div className="product-description-section">
+                    <p> {product.descricao} </p>
+                  </div>
 
-              {/* Avaliações e Vendas */}
-              <div className="product-rating-row">
-                <div className="stars-box">
-                  {/* <spa> </spa<Star size={14} fill="#ff4747" color="#ff4747" />
+                  {/* Avaliações e Vendas */}
+                  <div className="product-rating-row">
+                    <div className="stars-box">
+                      {/* <spa> </spa<Star size={14} fill="#ff4747" color="#ff4747" />
                   <span className="rating-score">{product.rating}</span> */}
-                </div>
-                <span className="meta-text">{product.stock} Uni.</span>
-                <span className="dot-divider">•</span>
-              </div>
-
-              {/* Bloco de Preços */}
-              <div className="product-price-box">
-                <div className="price-main-row">
-                  <span className="currency-symbol">Kz</span>
-                  <span className="price-amount">{product.preco - ((product.preco * 5) / 100)}</span>
-                </div>
-                <div className="original-price-row">
-                  <span>De: Kz {product.preco}</span>
-                </div>
-              </div>
-
-              <hr className="details-divider" />
-
-              {/* Seleção de Variação (Especificações) */}
-              <div className="product-option-group">
-                <div className="spec-options-list">
-                  {product.specifications?.map((esp, index) => {
-                    const isSelected = espSelected === esp.valor;
-                    return (
-                      <div
-                        key={index}
-                        className={`spec-option-chip ${isSelected ? "selected" : ""}`}
-                        onClick={() => setEspSelected(esp.valor)}
-                      >
-                        <span className="spec-value">{esp.valor}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-
-              {/* Seleção de Variação (Outras Especificações) */}
-              <div className="product-option-group">
-                <div className="spec-options-list">
-                  {product.otherSpecifications?.map((esp, index) => {
-                    const isSelected = otherEspSelected === esp.valor;
-                    return (
-                      <div
-                        key={index}
-                        className={`spec-option-chip ${isSelected ? "selected" : ""}`}
-                        onClick={() => setOtherEspSelected(esp.valor)}
-                      >
-                        <span className="spec-value">{esp.valor}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Quantidade */}
-              <div className="product-option-group">
-                <label className="option-label">Quantidade:</label>
-                <div className="quantity-selector">
-
-                  <button className="qty-btn" onClick={() => {
-                    if (quantidade > 1) {
-                      setquantidade(quantidade - 1)
-                    }
-                  }}><Minus size={14} /></button>
-                  <input type="text" value={quantidade} readOnly className="qty-input" />
-                  <button className="qty-btn"
-                    onClick={() => { setquantidade(quantidade + 1) }}
-                  ><Plus size={14} /></button>
-
-                </div>
-              </div>
-
-              <hr className="details-divider" />
-
-              {/* Frete e Garantias */}
-              <div className="shipping-guarantee-box">
-                <div className="info-row">
-                  <Truck size={18} className="info-icon" />
-                  <div className="info-content">
-                    <span className="info-title">Frete Grátis</span>
-                    <span className="info-sub">Entrega estimada: 7 a 15 dias úteis</span>
+                    </div>
+                    <span className="meta-text">{product.stock} Uni.</span>
+                    <span className="dot-divider">•</span>
                   </div>
-                  <ChevronRight size={16} className="arrow-right" />
-                </div>
 
-                <div className="info-row">
-                  <ShieldCheck size={18} className="info-icon" />
-                  <div className="info-content">
-                    <span className="info-title">Proteção ao Comprador</span>
-                    <span className="info-sub">Reembolso em até 15 dias se houver problemas</span>
+                  {/* Bloco de Preços */}
+                  <div className="product-price-box">
+                    <div className="face">
+                      <div className="price-main-row">
+                        <span className="currency-symbol">Kz</span>
+                        <span className="price-amount">{product.preco - ((product.preco * 5) / 100)}</span>
+                      </div>
+                      <div className="original-price-row">
+                        <span>De: Kz {product.preco}</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Botões de Ação (Desktop) */}
-              <div className="product-actions-desktop">
-                <button className="btn-add-cart" onClick={() => { addCart() }} >Adicionar ao Carrinho</button>
-                <button className="btn-buy-now">Comprar Agora</button>
+                  <hr className="details-divider" />
+
+                  {/* Seleção de Variação (Especificações) */}
+                  <div className="product-option-group">
+                    <div className="spec-options-list">
+                      {product.specifications?.map((esp, index) => {
+                        const isSelected = espSelected === esp.valor;
+                        return (
+                          <div
+                            key={index}
+                            className={`spec-option-chip ${isSelected ? "selected" : ""}`}
+                            onClick={() => setEspSelected(esp.valor)}
+                          >
+                            <span className="spec-value">{esp.valor}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+
+                  {/* Seleção de Variação (Outras Especificações) */}
+                  <div className="product-option-group">
+                    <div className="spec-options-list">
+                      {product.otherSpecifications?.map((esp, index) => {
+                        const isSelected = otherEspSelected === esp.valor;
+                        return (
+                          <div
+                            key={index}
+                            className={`spec-option-chip ${isSelected ? "selected" : ""}`}
+                            onClick={() => setOtherEspSelected(esp.valor)}
+                          >
+                            <span className="spec-value">{esp.valor}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Quantidade */}
+                  <div className="product-option-group">
+                    <label className="option-label">Quantidade:</label>
+                    <div className="quantity-selector">
+
+                      <button className="qty-btn" onClick={() => {
+                        if (quantidade > 1) {
+                          setquantidade(quantidade - 1)
+                        }
+                      }}><Minus size={14} /></button>
+                      <input type="text" value={quantidade} readOnly className="qty-input" />
+                      <button className="qty-btn"
+                        onClick={() => { setquantidade(quantidade + 1) }}
+                      ><Plus size={14} /></button>
+
+                    </div>
+                  </div>
+
+                  <hr className="details-divider" />
+
+                  {/* Frete e Garantias */}
+                  <div className="shipping-guarantee-box">
+                    <div className="info-row">
+                      <Truck size={18} className="info-icon" />
+                      <div className="info-content">
+                        <span className="info-title">Frete Grátis</span>
+                        <span className="info-sub">Entrega estimada: 7 a 15 dias úteis</span>
+                      </div>
+                      <ChevronRight size={16} className="arrow-right" />
+                    </div>
+
+                    <div className="info-row">
+                      <ShieldCheck size={18} className="info-icon" />
+                      <div className="info-content">
+                        <span className="info-title">Proteção ao Comprador</span>
+                        <span className="info-sub">Reembolso em até 15 dias se houver problemas</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Botões de Ação (Desktop) */}
+                  <div className="product-actions-desktop">
+                    <button className="btn-add-cart" onClick={() => { addCart() }} >Adicionar ao Carrinho</button>
+                    <button className="btn-buy-now"
+                      onClick={() => { buyNow() }}
+                    >Comprar Agora</button>
+                  </div>
+
+                </div>
               </div>
 
             </div>
-          </div>
 
-          {/* --- BARRA FIXA DE COMPRA MOBILE (Estilo AliExpress) --- */}
-          <div className="mobile-bottom-bar">
-            <div className="mobile-btn-group">
-              <button className="mobile-btn-cart" onClick={() => { addCart() }}>Carrinho</button>
-              <button className="mobile-btn-buy">Comprar</button>
+            {/* --- BARRA FIXA DE COMPRA MOBILE (Estilo AliExpress) --- */}
+            <div className="mobile-bottom-bar">
+              <div className="mobile-btn-group">
+                <button className="mobile-btn-cart" onClick={() => { addCart() }}>Carrinho</button>
+                <button className="mobile-btn-buy"
+                  onClick={() => { buyNow() }}
+                >Comprar</button>
+              </div>
             </div>
+
           </div>
         </div>}
-      <div className="face">
+
+
+      <div className="face container-relations">
         <h2> Produtos Relacionados </h2>
       </div>
       <ListCards products={newProducts} loadMore={loadMore} loading={loading} pagin={'Details'} />

@@ -19,7 +19,6 @@ export default function UserProfile() {
                }
             );
 
-
             const data = await response.json();
             setuserDatas(data.usuario[0])
          } catch (error) {
@@ -40,7 +39,7 @@ export default function UserProfile() {
                <div className="profile-header-card">
                   <User size={30} className="profile-avata" />
                   <div className="profile-titles">
-                     <h2 className="profile-name">{userdatas.nome}</h2>
+                     <h2 className="profile-name">{userdatas?.nome}</h2>
                      <span className="profile-role">Cliente Verificado</span>
                   </div>
                   <button className="profile-edit-btn">
@@ -53,7 +52,7 @@ export default function UserProfile() {
                      <Mail size={18} className="profile-icon" />
                      <div className="profile-info-text">
                         <span className="profile-label">E-mail</span>
-                        <span className="profile-value">{userdatas.email}</span>
+                        <span className="profile-value">{userdatas?.email}</span>
                      </div>
                   </div>
 
@@ -61,7 +60,7 @@ export default function UserProfile() {
                      <Phone size={18} className="profile-icon" />
                      <div className="profile-info-text">
                         <span className="profile-label">Telefone</span>
-                        <span className="profile-value">{userdatas.telefone}</span>
+                        <span className="profile-value">{userdatas?.telefone}</span>
                      </div>
                   </div>
                </div>

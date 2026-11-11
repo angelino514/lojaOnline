@@ -15,9 +15,7 @@ export default function Login() {
    const [loading, setLoading] = useState(false)
    const [message, setMessage] = useState('')
    const [action, setAction] = useState(null)
-
    const navigation = useNavigate()
-
    const [userData, setUserData] = useState({
       email: '',
       password: ''
@@ -49,7 +47,6 @@ export default function Login() {
          console.log('Dados inválidos')
          return
       }
-
       setLoading(true)
 
       try {
@@ -95,7 +92,7 @@ export default function Login() {
                {/* CABEÇALHO */}
                <div className="login-header">
                   <div className="login-logo-box">
-                     <span className="logo-text">Ali<span className="logo-highlight">Express</span></span>
+                     <span className="logo-text">Loja<span className="logo-highlight">Online</span></span>
                   </div>
                   <h1>Iniciar Sessão</h1>
                   <p>Bem-vindo de volta! Aceda aos seus pedidos, favoritos e ofertas.</p>

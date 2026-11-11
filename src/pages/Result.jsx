@@ -1,13 +1,16 @@
 
 import { useParams, Outlet } from "react-router-dom"
 import Header from "../components/Header"
-import { useEffect, useState, useRef } from "react"
 import getBrowserId from "../modules/getBrowserId"
+import { useState, useRef, useEffect, useContext } from 'react'
+import { useNavigate } from "react-router-dom";
+import { CartContext } from '../App'
+import "../styles/Result.css"
 
 export default function Result() {
 
+   const { productList } = useContext(CartContext)
    const { action, values } = useParams()
-
    const [products, setProducts] = useState([])
    const [offset, setOffset] = useState(0)
    const [loading, setLoading] = useState(false)
@@ -84,17 +87,38 @@ export default function Result() {
 
    const pagin = 'Result'
 
+   const navegation = useNavigate()
+   function filterProducts(values) {
+      navegation(`/Result/Categories/${values}`)
+   }
+
    return (
       <>
          <Header pagin="Result" />
-
          <main className="main">
-            <Outlet context={{
-               products,
-               loadMore,
-               loading,
-               pagin
-            }} />
+            <nav className="navabar-result-filter">
+               <div className="face">
+                  <ul className="ul-result-filter">
+                     <li className="li-iten-result-filter" onClick={() => { filterProducts('todas') }}>
+                        todas
+                     </li>
+                     {productList.map((p, i) => (
+                        <li key={i} className="li-iten-result-filter"
+                           onClick={() => { filterProducts(p.categoria) }}
+                        > {p.categoria}</li>
+                     ))}
+                  </ul>
+               </div>
+            </nav>
+
+            <section>
+               <Outlet context={{
+                  products,
+                  loadMore,
+                  loading,
+                  pagin
+               }} />
+            </section>
          </main>
       </>
    )

@@ -15,11 +15,13 @@ import Header from "../components/Header";
 import MenuMobile from "../components/MenuMobile";
 import { CartContext } from '../App'
 import { useContext } from "react"
+import { useNavigate } from "react-router-dom";
 
 
 export default function Cart() {
 
    const { setCartNumber } = useContext(CartContext)
+   const navigation = useNavigate()
 
    const [products, setProducts] = useState([]);
    const [showMobileSummary, setShowMobileSummary] = useState(false);
@@ -36,7 +38,6 @@ export default function Cart() {
          });
 
          const data = await res.json();
-         console.log(data)
          const productsWithDefaults = data.productsCart.map(item => ({
             ...item,
             checked: false,
@@ -48,6 +49,7 @@ export default function Cart() {
          return;
       }
    }
+
 
    useEffect(() => {
       getCartItems();
@@ -82,6 +84,13 @@ export default function Cart() {
       );
    }
 
+   function finalizarCompra() {
+      navigation('/Checkout', {
+         state: {
+            produtos: selectedItems
+         }
+      });
+   }
 
    async function deleteProduct(carrinho_id) {
       try {
@@ -121,7 +130,7 @@ export default function Cart() {
          <Header pagin={'Cart'} />
          <MenuMobile />
 
-         <div className="ali-cart-page">
+         <div className="ali-cart-page main-app-containers">
             <div className="cart-container">
 
                {/* --- COLUNA ESQUERDA: LISTA DE ITENS --- */}
@@ -317,7 +326,7 @@ export default function Cart() {
                                     )}
                                  </button>
 
-                                 <button className="btn-checkout" disabled={totalItens === 0}>
+                                 <button onClick={() => finalizarCompra()} className="btn-checkout" disabled={totalItens === 0}>
                                     Finalizar Compra ({totalItens})
                                  </button>
                               </div>

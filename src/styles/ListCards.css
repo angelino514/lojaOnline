@@ -124,4 +124,8 @@
       gap: 12px;
    }
 
+   .container-list-cards {
+      padding-bottom: 80px;
+   }
+
 }

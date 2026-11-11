@@ -6,14 +6,12 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 export default function MyAccount() {
 
    const navAccount = [
-      { item: "Meu perfil", icon: User, path: "Profile" },
+      { item: "Meu perfil", icon: User, path: "UserProfile " },
       { item: "Meus pedidos", icon: Package, path: "Orders" },
       { item: "Lista de favoritos", icon: Heart, path: "Favorites" }
    ];
 
-
    async function deleteUserSession() {
-
       try {
          const res = await fetch('http://localhost:3000/deleteUserSession', {
             method: 'DELETE',

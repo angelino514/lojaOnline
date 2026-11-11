@@ -17,7 +17,6 @@
    align-items: center;
 }
 
-/* Faixa de rolagem horizontal com efeito Snap */
 .gallery-scroll-track {
    display: flex;
    width: 100%;
@@ -46,7 +45,6 @@
    object-fit: cover;
 }
 
-/* Badge de Desconto */
 .badge-discount-float {
    position: absolute;
    top: 12px;
@@ -55,12 +53,11 @@
    color: #ffffff;
    font-size: 12px;
    font-weight: 800;
-   padding: 4px 8px;
    border-radius: 6px;
    z-index: 10;
+   padding: 5px;
 }
 
-/* Botões de Navegação (Left / Right) */
 .gallery-nav-btn {
    position: absolute;
    top: 50%;
@@ -88,7 +85,7 @@
 }
 
 .favorite-active {
-   color: #ef4444;
+   color: #ff4747;
 }
 
 .gallery-nav-btn.left {
@@ -99,7 +96,6 @@
    right: 10px;
 }
 
-/* Ações Flutuantes */
 .gallery-actions-overlay {
    position: absolute;
    top: 12px;
@@ -125,20 +121,15 @@
    transition: color 0.2s;
 }
 
-.favorite-active {
-   color: #ff4747;
-}
-
 .redb {
    color: #ff4747;
 }
 
-/* --- ESTILO DAS MINIATURAS SINCRONIZADAS --- */
 .thumbnail-list {
+   flex: 1;
    display: flex;
    gap: 10px;
    overflow-x: auto;
-   padding-bottom: 4px;
    scrollbar-width: none;
 }
 
@@ -163,7 +154,6 @@
 
 .thumbnail-item.active {
    border-color: #ff4747;
-   /* Borda vermelha da miniatura ativa */
 }
 
 .thumbnail-item img {
@@ -179,6 +169,10 @@
       border-radius: 0;
       border-left: none;
       border-right: none;
+   }
+
+   .thumbnail-list {
+      max-width: 95%;
    }
 
    .gallery-nav-btn {

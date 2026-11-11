@@ -41,6 +41,7 @@ body {
 
 .main-app-containers {
   margin-top: 80px;
+  box-sizing: border-box;
 }
 
 
@@ -71,9 +72,18 @@ a {
   font-size: 12px;
 }
 
-@media (max-width : 730px) {
+@media (max-width : 780px) {
+
   .face {
-    width: 90%;
+    width: 95%;
+  }
+
+  .main-app-containers {
+    margin-top: 110px;
+  }
+
+  .main {
+    margin-top: 90px;
   }
 
   .hiden-btn {

@@ -1,4 +1,4 @@
-import { Home, Menu, ShoppingCart, UserCircle , LayoutGrid } from "lucide-react"
+import { Home, Menu, ShoppingCart, UserCircle, LayoutGrid } from "lucide-react"
 import '../styles/MenuMobile.css'
 import { NavLink } from "react-router-dom"
 import { CartContext } from '../App'
@@ -12,7 +12,7 @@ export default function MenuMobile() {
       { item: 'Home', icon: Home, pagin: '/' },
       { item: 'Categorias', icon: LayoutGrid, pagin: '/Categories' },
       { item: 'Carrinho', icon: ShoppingCart, pagin: '/Cart' },
-      { item: 'Minha Conta', icon: UserCircle, pagin: '/UserCount' }
+      { item: 'Minha Conta', icon: UserCircle, pagin: '/UserCount/MyAccount/UserProfile' }
    ]
 
    const { cartNumber } = useContext(CartContext)

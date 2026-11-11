@@ -1,7 +1,7 @@
 import '../styles/Header.css'
 import { Search, UserCircle, ShoppingCart, Menu, ArrowLeft } from 'lucide-react'
 import SidebarMenu from './SidebarMenu'
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CartContext } from '../App'
 import SearchSuggestions from './SearchSuggestions'
@@ -9,14 +9,15 @@ import AnimatedSearchDiv from './AnimatedSearchDiv'
 
 export default function Header({ pagin }) {
 
-   const { cartNumber, sidbarAtivo, setSidbarAtivo } = useContext(CartContext)
-   const [suggestons, setSuggestons] = useState(false)
-   const navigation = useNavigate()
+   const { cartNumber, sidbarAtivo, setSidbarAtivo,
+      suggestons, setSuggestons } = useContext(CartContext)
 
+   const navigation = useNavigate()
 
    function activeSugesstons() {
       setSuggestons(true)
    }
+   
    function searchProducts(value) {
       if (pagin === 'Home') {
          navigation(`/Result/Search/${value}`)
@@ -30,7 +31,7 @@ export default function Header({ pagin }) {
    const nav = [
       { button: 'Pesquisar', icon: Search, route: null },
       { button: 'Carrinho', icon: ShoppingCart, route: '/Cart' },
-      { button: 'minha conta', icon: UserCircle, route: '/UserCount' }
+      { button: 'minha conta', icon: UserCircle, route: '/UserCount/MyAccount/UserProfile' }
    ]
 
    function routes({ button, values }) {
@@ -78,7 +79,6 @@ export default function Header({ pagin }) {
    return (
       <>
          {suggestons && <SearchSuggestions searchProducts={searchProducts} />}
-
          <section className='section-header'>
             <header className='header'>
                <div className="face">
@@ -116,7 +116,6 @@ export default function Header({ pagin }) {
             <aside className='face face-hader'>
             </aside>
          </section>
-
 
          {sidbarAtivo && <SidebarMenu pagin={pagin} />}
       </>
