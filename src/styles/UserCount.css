@@ -311,9 +311,10 @@
 
 /* Responsividade Mobile */
 @media (max-width: 768px) {
+  
   .ali-account-page {
     margin-top: 60px;
-    padding: 0 ;
+    padding: 0;
   }
 
   .account-container {

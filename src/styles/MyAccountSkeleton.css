@@ -1,0 +1,94 @@
+.skeleton-account {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+}
+
+.skeleton-account .user-inf-mobile {
+   display: flex;
+   align-items: center;
+   width: 80%;
+   max-width: 300px;
+   margin: 30px auto;
+   padding: 10px 0;
+   background: #fff;
+   border: 1px solid #e8e8e8;
+   border-radius: 30px;
+}
+
+.skeleton-account>.face {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   justify-content: center;
+   gap: 12px;
+}
+
+.skeleton-loading {
+   background: linear-gradient(90deg,
+         #eeeeee 25%,
+         #f8f8f8 50%,
+         #eeeeee 75%);
+   background-size: 200% 100%;
+   animation: skeleton-shimmer 1.5s infinite;
+   border-radius: 6px;
+}
+
+.skeleton-avatar {
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+}
+
+.skeleton-name {
+   width: 160px;
+   height: 16px;
+}
+
+.skeleton-welcome {
+   width: 190px;
+   height: 12px;
+}
+
+.skeleton-account .containers-aside-menu {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.skeleton-account .btns-mobils-accont-menu {
+   display: flex;
+   align-items: center;
+   padding: 20px 0;
+   border: 1px solid #ededed;
+   border-radius: 5px;
+   background: #fff;
+}
+
+.skeleton-account .btns-mobils-accont-menu .face {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   gap: 10px;
+}
+
+.skeleton-icon {
+   width: 20px;
+   height: 20px;
+   border-radius: 5px;
+}
+
+.skeleton-menu-text {
+   width: 120px;
+   height: 13px;
+}
+
+@keyframes skeleton-shimmer {
+   from {
+      background-position: 100% 0;
+   }
+
+   to {
+      background-position: -100% 0;
+   }
+}

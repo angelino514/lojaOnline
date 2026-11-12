@@ -19,6 +19,7 @@ import Orders from './components/Orders'
 import Favorites from './components/Favorites'
 import filtercategories from './modules/categories';
 import Checkout from './pages/Checkout';
+import FilterUserCount from './pages/FilterUserCount';
 
 
 export const CartContext = createContext()
@@ -86,13 +87,14 @@ function App() {
 
                <Route path="/UserCount" element={<UserCount />}>
                   <Route path="MyAccount" element={<MyAccount />}>
-                     <Route path="UserProfile" element={<UserProfile />} />
-                     <Route path="Orders" element={<Orders />} />
-                     <Route path="Favorites" element={<Favorites />} />
+                     <Route path="UserProfile" element={<UserProfile actions={'dasktop'} />} />
+                     <Route path="Orders" element={<Orders actions={'dasktop'} />} />
+                     <Route path="Favorites" element={<Favorites actions={'dasktop'} />} />
                   </Route>
 
                   <Route path="Login" element={<Login />} />
                   <Route path="Register" element={<Register />} />
+                  <Route path="FilterUserCount/:action" element={<FilterUserCount />} />
                </Route>
 
                <Route path="/Result/:action/:values" element={<Result />}>

@@ -5,7 +5,7 @@ import getBrowserId from "../modules/getBrowserId";
 import Loading from "./Loading";
 
 
-export default function Favorites() {
+export default function Favorites({ actions }) {
 
    const [favoritesData, setfavoritesData] = useState([])
    const [loading, setLoading] = useState(true)
@@ -62,14 +62,15 @@ export default function Favorites() {
          }
 
       } catch (err) {
-         console.log('Erro ao eliminar favorito:', err)
+         return
       }
    }
 
    return (
       <>
+         {/* actions */}
          {loading ? <Loading /> :
-            <div className="favorites-container">
+            <div className={`favorites-container ${actions === 'mobile' ? '' : 'hiden-userProfile'}`}>
                <div className="favorites-header">
                   <h2>
                      <Heart size={20} /> Lista de Favoritos

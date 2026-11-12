@@ -17,7 +17,7 @@ export default function Categories() {
          <Header pagin={'categorias'} />
          <MenuMobile />
 
-         <section className="section-header-cat main-app-containers ">
+         <section className="section-header-cat main-app-containers">
             {loading ? <Loading />
                :
                <aside className="categories-grid-container face">

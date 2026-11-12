@@ -9,7 +9,8 @@ import {
    Plus,
    ChevronUp,
    ChevronDown,
-   X
+   X,
+   ShieldCheck
 } from "lucide-react";
 import Header from "../components/Header";
 import MenuMobile from "../components/MenuMobile";
@@ -331,7 +332,10 @@ export default function Cart() {
                         })()}
 
                         <div className="summary-guarantee">
-                           <span>🛡️ Garantia de Reembolso AliExpress de 15 dias</span>
+                           <ShieldCheck size={18} />
+                           <span>
+                              Garantia de Reembolso AliExpress de 15 dias
+                           </span>
                         </div>
                      </div>
                   </div>

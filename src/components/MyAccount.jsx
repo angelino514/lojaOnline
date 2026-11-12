@@ -1,15 +1,16 @@
 import "../styles/MyAccount.css";
-import { User, Package, Heart, LogOut, LogIn } from "lucide-react";
+import { User, Package, Heart, LogOut, LogIn, UserCircle } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { Outlet, useNavigate, useLocation, NavLink, useOutletContext } from "react-router-dom";
+import MyAccountSkeleton from "./MyAccountSkeleton"
 
 
 export default function MyAccount() {
 
    const navAccount = [
-      { item: "Meu perfil", icon: User, path: "UserProfile " },
-      { item: "Meus pedidos", icon: Package, path: "Orders" },
-      { item: "Lista de favoritos", icon: Heart, path: "Favorites" }
+      { item: "Meu perfil", icon: User, path: "UserProfile", action: 'profile' },
+      { item: "Meus pedidos", icon: Package, path: "Orders", action: 'Orders' },
+      { item: "Lista de favoritos", icon: Heart, path: "Favorites", action: 'Favorites' }
    ];
 
    const [section, setSection] = useState(false);
@@ -18,7 +19,6 @@ export default function MyAccount() {
 
    useEffect(() => {
       async function verificarSessao() {
-
          setLoading(true)
          try {
             const response = await fetch(
@@ -65,7 +65,9 @@ export default function MyAccount() {
    return (
       <section className="section-account">
          <aside className="face">
+
             <nav className="nav-account-items">
+
                <ul className="ul-lidt-account-items">
                   {navAccount.map((item, index) => {
                      const Icon = item.icon;
@@ -89,17 +91,69 @@ export default function MyAccount() {
                   <LogOut size={15} />
                   <span>Terminar sessão</span>
                </button> :
-               
-                  <button className="account-logout" 
-                  onClick={() => { navigate('/UserCount/Login') }}>
+
+                  <button className="account-logout"
+                     onClick={() => { navigate('/UserCount/Login') }}>
                      <LogIn size={15} />
                      <span>Iniciar sessão</span>
                   </button>}
             </nav>
 
+            <div className="menu-mobile-container-main">
+               {loading ? <MyAccountSkeleton /> :
+                  <nav className="navbar-MyAccount-mobile">
+                     <div className="user-inf-mobile">
+                        <div className="face">
+                           <div className="avatar-user-inf-mobile">
+                              {section ? <span> {userdatas[0]?.nome?.charAt(0).toUpperCase()}</span> : <span> A </span>}
+                           </div>
+                           <h2> Olá {section ? <span> {userdatas[0]?.nome + ' ' + userdatas[0]?.sobrenome}</span> : <span > Usuário </span>}</h2>
+                           <span className="text-span-user-inf"> Bem Vindo ao seu Painel </span>
+                        </div>
+                     </div>
+
+                     <aside className="containers-aside-menu">
+                        {navAccount.map((p) => {
+                           const Icon = p.icon
+                           return (
+                              <NavLink
+                                 key={p.action}
+                                 className='btns-mobils-accont-menu'
+                                 to={`/UserCount/FilterUserCount/${p.action}`}
+                              >
+                                 <div className="face">
+                                    <Icon size={20} />
+                                    <span>{p.item}</span>
+                                 </div>
+                              </NavLink>
+                           )
+                        })}
+
+                        {section ? <button className="btns-mobils-accont-menu"
+                           onClick={() => { deleteUserSession() }}>
+                           <div className="face">
+                              <LogOut size={15} />
+                              <span>Terminar sessão</span>
+                           </div>
+                        </button> :
+
+                           <button className="btns-mobils-accont-menu"
+                              onClick={() => { navigate('/UserCount/Login') }}>
+                              <div className="face">
+                                 <LogIn size={15} />
+                                 <span>Iniciar sessão</span>
+                              </div>
+                           </button>}
+                     </aside>
+                  </nav>
+               }
+
+            </div>
+
             <main className="main-container-account">
                <Outlet />
             </main>
+
          </aside>
       </section>
    );

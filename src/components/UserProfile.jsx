@@ -1,9 +1,9 @@
-import { User, Mail, Phone, MapPin, Edit3 } from "lucide-react";
-import "../styles/MyAccount.css";
+import { User, Mail, Phone, Edit3 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+import "../styles/MyAccount.css";
 
-export default function UserProfile() {
+export default function UserProfile({ actions }) {
 
    const [loading, setLoading] = useState(true)
    const [userdatas, setuserDatas] = useState([])
@@ -35,7 +35,9 @@ export default function UserProfile() {
 
       <>
          {loading ? <Loading /> :
-            <div className="profile-container">
+
+            // mobile
+            <div className={`profile-container ${actions === 'mobile' ? '' : 'hiden-userProfile'}`}>
                <div className="profile-header-card">
                   <User size={30} className="profile-avata" />
                   <div className="profile-titles">

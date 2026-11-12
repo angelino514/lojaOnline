@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Package, Clock, Truck, CheckCircle, ChevronRight } from "lucide-react";
 import "../styles/MyAccount.css";
 
@@ -38,13 +38,13 @@ const ordersData = [
    }
 ];
 
-export default function Orders() {
+export default function Orders({ actions }) {
    const [activeTab, setActiveTab] = useState("in_progress");
 
    const filteredOrders = ordersData.filter(order => order.type === activeTab);
 
    return (
-      <div className="orders-container">
+      <div className={`orders-container ${actions === 'mobile' ? '' : 'hiden-userProfile'}`}>
          <div className="orders-header">
             <h2>
                <Package size={20} /> Meus Pedidos
@@ -53,13 +53,13 @@ export default function Orders() {
 
          {/* Menu de Abas */}
          <div className="orders-tabs-menu">
-            <button 
+            <button
                className={`orders-tab-btn ${activeTab === "in_progress" ? "active" : ""}`}
                onClick={() => setActiveTab("in_progress")}
             >
                Em andamento
             </button>
-            <button 
+            <button
                className={`orders-tab-btn ${activeTab === "completed" ? "active" : ""}`}
                onClick={() => setActiveTab("completed")}
             >

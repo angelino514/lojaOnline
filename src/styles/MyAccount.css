@@ -4,14 +4,13 @@
   font-family: Arial, sans-serif;
 }
 
-.section-account > .face {
+.section-account>.face {
   display: flex;
   background: #fff;
   border: 1px solid #e8e8e8;
   border-radius: 12px;
   overflow: hidden;
 }
-
 
 .nav-account-items {
   width: 30%;
@@ -20,7 +19,6 @@
   padding: 22px 14px;
   box-sizing: border-box;
   background: #fafafa;
-  border-right: 1px solid #ededed;
 }
 
 .ul-lidt-account-items {
@@ -81,7 +79,6 @@
   color: #e43225;
 }
 
-/* CONTEÚDO PRINCIPAL */
 
 .main-container-account {
   display: flex;
@@ -546,33 +543,98 @@
   background: #fafafa;
 }
 
+
+
+.navbar-MyAccount-mobile,
+.menu-mobile-container-main {
+  display: none;
+}
+
+
 /* RESPONSIVIDADE */
+@media (max-width: 768px) {
 
-@media (max-width: 680px) {
-  .main-container-account {
-    width: 100%;
-    padding: 8px;
+  .menu-mobile-container-main {
+    display: flex;
+    flex: 1;
   }
 
-  .favorites-grid {
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  }
-
-  .profile-header-card {
+  .section-account>.face {
     flex-direction: column;
-    align-items: flex-start;
+    border: unset;
+    padding-bottom: 80px;
+  }
+
+  .nav-account-items,
+  .hiden-userProfile {
+    display: none;
+  }
+
+  .navbar-MyAccount-mobile {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .user-inf-mobile {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    margin: 30px auto;
+    padding: 10px 0;
+    border-radius: 30px;
+    max-width: 300px;
+  }
+
+  .user-inf-mobile>.face {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .avatar-user-inf-mobile {
+    background-color: #c92319;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .avatar-user-inf-mobile span {
+    font-size: 30px;
+    color: #fff;
+  }
+
+  .containers-aside-menu {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
   }
 
-  .profile-titles {
-    margin-left: 0;
+  .btns-mobils-accont-menu {
+    padding: 20px 0;
+    border-radius: 5px;
+    padding: 20px 0;
+    border-radius: 5px;
+    border: 1px solid #ededed;
+    background: #fff;
   }
 
-  .orders-tabs-menu {
-    gap: 6px;
+  .btns-mobils-accont-menu>.face {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  .section-account > .face {
-    border-radius: 8px;
+  .btns-mobils-accont-menu>.face {
+    color: #000;
+    font-size: 13px;
   }
+
 }

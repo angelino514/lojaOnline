@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { ReceiptText, Info, ShieldCheck } from "lucide-react";
 import "../styles/Checkout.css";
 import Loading from "../components/Loading";
-import logoExpress from "../../public/express.jfif"
 
 export default function Checkout() {
 
@@ -133,7 +132,6 @@ export default function Checkout() {
                <form onSubmit={finalizarPedido}>
 
                   <div className="checkout-layout">
-
                      <section className="checkout-main">
 
                         {/* CLIENTE */}
@@ -318,7 +316,11 @@ export default function Checkout() {
                                  />
 
                                  <div className="checkout-payment-icon express-icon">
-                                    <img width={40} src={logoExpress} alt="pagamento-express" />
+                                    <img
+                                       width={40}
+                                       src="/express.jfif"
+                                       alt="pagamento-express"
+                                    />
                                  </div>
 
                                  <div className="checkout-payment-info">
