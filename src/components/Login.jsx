@@ -1,7 +1,7 @@
 import "../styles/Login.css";
-import { Mail, Lock, ArrowRight, ShieldCheck } from "lucide-react";
+import { Mail, Lock, ArrowRight, ShieldCheck, Eye, EyeOff } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import validateEmail from "../modules/validateEmail";
 import CartToastLoader from "./CartToastLoader";
 import TextErro from "./TextErro";
@@ -11,10 +11,12 @@ import getBrowserId from "../modules/getBrowserId";
 
 export default function Login() {
 
-   const [success, setSuccess] = useState(null)
+   const [sucess, setSucess] = useState(null)
    const [loading, setLoading] = useState(false)
    const [message, setMessage] = useState('')
    const [action, setAction] = useState(null)
+   const [typeText, setTypeText] = useState(false)
+
    const navigation = useNavigate()
    const [userData, setUserData] = useState({
       email: '',
@@ -34,17 +36,14 @@ export default function Login() {
       e.preventDefault()
 
       if (!userData.email || !userData.password) {
-         console.log('Nao foi possivel inciar sessao')
          return
       }
 
       if (userData.email === '' || userData.password === '') {
-         console.log('Dados vazios')
          return
       }
 
       if (!validateEmail(userData.email)) {
-         console.log('Dados inválidos')
          return
       }
       setLoading(true)
@@ -64,12 +63,12 @@ export default function Login() {
 
          const result = await response.json()
          if (result.success) {
-            window.location.reload()
+            navigation('/UserCount/MyAccount/UserProfile')
             return
          }
 
          if (!result.success) {
-            setSuccess(false)
+            setSucess(false)
             setMessage(result.message)
             return
          }
@@ -80,20 +79,26 @@ export default function Login() {
       } finally { setLoading(false) }
    }
 
+   useEffect(() => {
+      if (action === 'cancel' || action === 'continue') {
+         setSucess(null)
+         setAction(null)
+      }
+   }, [action])
+
    return (
 
       <>
          {loading && <CartToastLoader />}
-         {success === false && <TextErro message={message} />}
-         {success === true && <TextSucess message={message} />}
+         {sucess === false && <TextErro message={message} setAction={setAction} />}
+         {sucess === true && <TextSucess message={message} setAction={setAction} />}
+
+
          <div className="ali-login-page">
             <div className="login-container">
 
                {/* CABEÇALHO */}
                <div className="login-header">
-                  <div className="login-logo-box">
-                     <span className="logo-text">Loja<span className="logo-highlight">Online</span></span>
-                  </div>
                   <h1>Iniciar Sessão</h1>
                   <p>Bem-vindo de volta! Aceda aos seus pedidos, favoritos e ofertas.</p>
                </div>
@@ -120,26 +125,21 @@ export default function Login() {
                   {/* Palavra-passe */}
                   <div className="input-group">
                      <div className="label-row">
-                        <label htmlFor="password">Palavra-passe</label>
-                        <a href="#recuperar" className="forgot-password">Esqueceu-se?</a>
+                        {/* <label htmlFor="password">Palavra-passe</label>
+                        <a href="#recuperar" className="forgot-password">Esqueceu-se?</a> */}
                      </div>
                      <div className="input-field-wrapper">
                         <Lock size={18} className="input-icon" />
                         <input
-                           type="password"
+                           type={!typeText ? 'password' : 'text'}
                            id="password"
                            name="password"
                            placeholder="••••••••"
                            value={userData.password}
                            onChange={handleChange}
                         />
+                        {!typeText ? <Eye onClick={() => { setTypeText(!typeText) }} size={18} /> : <EyeOff size={18} onClick={() => { setTypeText(!typeText) }} />}
                      </div>
-                  </div>
-
-                  {/* Lembrar-me */}
-                  <div className="remember-me">
-                     <input type="checkbox" id="remember" className="ali-checkbox" />
-                     <label htmlFor="remember">Lembrar-me neste dispositivo</label>
                   </div>
 
                   {/* Botão de Entrar */}
@@ -152,8 +152,7 @@ export default function Login() {
                {/* LINK PARA CRIAR CONTA */}
                <div className="toggle-mode-bar">
                   <span>Ainda não tem conta?</span>
-                  <a href="#register" className="link-to-register">Criar uma conta</a>
-                  {<NavLink to={'/UserCount/Register'}> Registrar </NavLink>}
+                  {<NavLink className={'link-to-register'} to={'/UserCount/Register'}> Criar uma conta </NavLink>}
                </div>
 
                {/* GARANTIA */}

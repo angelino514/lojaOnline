@@ -72,6 +72,15 @@ a {
   font-size: 12px;
 }
 
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+input::-ms-reveal {
+  display: none;
+}
+
 @media (max-width : 780px) {
 
   .face {

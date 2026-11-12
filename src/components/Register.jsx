@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import "../styles/Register.css";
-import { User, Mail, Phone, Lock, ArrowRight, ShieldCheck } from "lucide-react";
+import {
+   User, Mail, Phone, Lock, ArrowRight, ShieldCheck, Eye, EyeOff
+} from "lucide-react";
 import TextErro from "./TextErro";
 import validateText from "../modules/validateText";
 import validateEmail from "../modules/validateEmail"
 import CartToastLoader from "./CartToastLoader";
 import TextSucess from "./TextSucess";
 import getBrowserId from "../modules/getBrowserId";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 export default function Register() {
-
 
    const [userData, setUserData] = useState({
       name: '',
@@ -46,6 +48,9 @@ export default function Register() {
    const [sucess, setSucess] = useState(null)
    const [action, setAction] = useState(null)
    const [loading, setLoading] = useState(false)
+   const [checked, setChecked] = useState(false)
+   const [typeText, setTypeText] = useState(false)
+   const navigation = useNavigate()
 
 
    function handleChange(e) {
@@ -96,7 +101,6 @@ export default function Register() {
 
    async function sendDatas(e) {
       e.preventDefault()
-
 
       const formaData = new FormData()
       // Name
@@ -269,7 +273,7 @@ export default function Register() {
          }
 
          if (data.success) {
-            window.location.reload()
+            navigation('/UserCount/MyAccount/UserProfile')
             return
          }
 
@@ -298,10 +302,6 @@ export default function Register() {
 
                {/* CABEÇALHO */}
                <div className="register-header">
-
-                  <div className="register-logo-box">
-                     <span className="logo-text">Ali<span className="logo-highlight">Express</span></span>
-                  </div>
                   <h1>Criar Conta</h1>
                   <p>Preencha os campos abaixo para se registar e aproveitar ofertas exclusivas.</p>
                </div>
@@ -319,7 +319,7 @@ export default function Register() {
                               onChange={handleChange}
                            />
                         </div>
-                        {statesSucess.name && <span> {messageerrors.messagename} </span>}
+                        {statesSucess.name && <span className="erro-text-span"> {messageerrors.messagename} </span>}
                      </div>
 
                      <div className="input-group">
@@ -330,7 +330,7 @@ export default function Register() {
                               onChange={handleChange} />
                         </div>
                         {statesSucess.surname && (
-                           <span>{messageerrors.messagesurname}</span>
+                           <span className="erro-text-span">{messageerrors.messagesurname}</span>
                         )}
                      </div>
                   </div>
@@ -344,7 +344,7 @@ export default function Register() {
                            onChange={handleChange} />
                      </div>
                      {statesSucess.email && (
-                        <span>{messageerrors.messageemail}</span>
+                        <span className="erro-text-span">{messageerrors.messageemail}</span>
                      )}
                   </div>
 
@@ -363,9 +363,8 @@ export default function Register() {
                         />
                      </div>
 
-
                      {statesSucess.phone && (
-                        <span>{messageerrors.messagephone}</span>
+                        <span className="erro-text-span">{messageerrors.messagephone}</span>
                      )}
                   </div>
 
@@ -374,12 +373,15 @@ export default function Register() {
                      <label htmlFor="password">Palavra-passe</label>
                      <div className="input-field-wrapper">
                         <Lock size={18} className="input-icon" />
-                        <input type="password" name="password" id="password" placeholder="Mínimo de 6 caracteres"
+                        <input type={!typeText ? 'password' : 'text'} name="password" id="password" placeholder="Mínimo de 6 caracteres"
                            onChange={handleChange} />
+                        {!typeText ? <Eye size={18}
+                           onClick={() => { setTypeText(!typeText) }} /> : <EyeOff size={18}
+                              onClick={() => { setTypeText(!typeText) }} />}
                      </div>
 
                      {statesSucess.password && (
-                        <span>{messageerrors.messagepassword}</span>
+                        <span className="erro-text-span">{messageerrors.messagepassword}</span>
                      )}
                   </div>
 
@@ -388,24 +390,28 @@ export default function Register() {
                      <label htmlFor="password">Confirmar pala-passe</label>
                      <div className="input-field-wrapper">
                         <Lock size={18} className="input-icon" />
-                        <input type="password" name="password_confirm" id="password" placeholder="Mínimo de 6 caracteres"
+                        <input type={!typeText ? 'password' : 'text'} name="password_confirm" id="password" placeholder="Mínimo de 6 caracteres"
                            onChange={handleChange} />
+                        {!typeText ? <Eye onClick={() => { setTypeText(!typeText) }} size={18} /> : <EyeOff size={18} onClick={() => { setTypeText(!typeText) }} />}
                      </div>
                      {statesSucess.password_confirm && (
-                        <span>{messageerrors.messagepassword_confirm}</span>
+                        <span className="erro-text-span">{messageerrors.messagepassword_confirm}</span>
                      )}
                   </div>
 
                   {/* Termos e Condições */}
                   <div className="register-terms">
-                     <input type="checkbox" id="terms" className="ali-checkbox" />
+                     <input type="checkbox" id="terms" className="ali-checkbox"
+                        checked={checked}
+                        onChange={(e) => setChecked(e.target.checked)}
+                     />
                      <label htmlFor="terms">
                         Concordo com os <a href="#termos">Termos de Utilização</a> e a <a href="#privacidade">Política de Privacidade</a>.
                      </label>
                   </div>
 
                   {/* Botão de Submissão */}
-                  <button type="submit" className="btn-submit">
+                  <button disabled={!checked} type="submit" className="btn-submit">
                      <span>Registar Conta</span>
                      <ArrowRight size={18} />
                   </button>
@@ -414,7 +420,7 @@ export default function Register() {
                {/* LINK PARA LOGIN */}
                <div className="toggle-mode-bar">
                   <span>Já tem uma conta?</span>
-                  <a href="#login" className="link-to-login">Iniciar Sessão</a>
+                  {<NavLink className={'link-to-login'} to={'/UserCount/Login'}> Iniciar Sessão </NavLink>}
                </div>
 
                {/* GARANTIA */}

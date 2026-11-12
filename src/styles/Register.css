@@ -4,7 +4,6 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   background-color: #f7f7f7;
    padding: 40px 16px;
    box-sizing: border-box;
 }
@@ -162,7 +161,15 @@
    background-color: #e03e3e;
 }
 
-/* Rodapé / Link para Login */
+.btn-submit:disabled {
+   background-color: #e03e3e25;
+   color: #777777;
+   cursor: not-allowed;
+   box-shadow: none;
+   opacity: 0.7;
+}
+
+
 .toggle-mode-bar {
    display: flex;
    justify-content: center;
@@ -196,4 +203,9 @@
    padding: 10px;
    border-radius: 8px;
    border: 1px solid #eeeeee;
+}
+
+.erro-text-span {
+   font-size: 12px;
+   color: red;
 }

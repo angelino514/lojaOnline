@@ -1,8 +1,5 @@
 .ali-cart-page {
    width: 100%;
-   max-width: 1200px;
-   margin: 80px auto 40px auto;
-   padding: 0 16px;
    box-sizing: border-box;
 }
 
@@ -13,7 +10,7 @@
    align-items: start;
 }
 
-/* Coluna Principal */
+
 .cart-items-section {
    display: flex;
    flex-direction: column;
@@ -393,9 +390,9 @@
 
 
 @media (max-width: 768px) {
+
    .ali-cart-page {
       margin-top: 60px;
-      padding: 0 0 90px 0;
    }
 
    .cart-container {
@@ -412,7 +409,6 @@
       display: none;
    }
 
-   /* Barra Fixa Flutuante Inferior */
    .cart-summary-section {
       position: fixed;
       bottom: 50px;
@@ -444,7 +440,7 @@
       gap: 10px;
    }
 
-   /* Recolhido no Mobile por padrão */
+
    .summary-row,
    .summary-divider,
    .summary-guarantee,
@@ -452,7 +448,6 @@
       display: none;
    }
 
-   /* Expandido */
    .summary-card.mobile-expanded .mobile-summary-header {
       display: flex;
       justify-content: space-between;
