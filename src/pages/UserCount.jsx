@@ -1,5 +1,5 @@
 import "../styles/UserCount.css";
-import { Outlet, Navigate, useLocation } from "react-router-dom";
+import { Outlet, } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import MenuMobile from "../components/MenuMobile";
@@ -9,7 +9,6 @@ export default function UserCount() {
 
    const [section, setSection] = useState(false);
    const [loading, setLoading] = useState(true);
-   const location = useLocation();
    const [userdatas, setuserDatas] = useState([])
 
    useEffect(() => {

@@ -1,8 +1,6 @@
 .ali-account-page {
   width: 100%;
   max-width: 1200px;
-  margin: 80px auto 40px auto;
-  padding: 0 16px;
   box-sizing: border-box;
 }
 
@@ -315,7 +313,7 @@
 @media (max-width: 768px) {
   .ali-account-page {
     margin-top: 60px;
-    padding: 0 8px;
+    padding: 0 ;
   }
 
   .account-container {
