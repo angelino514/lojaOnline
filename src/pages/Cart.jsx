@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
 
-   const { setCartNumber } = useContext(CartContext)
+   const { setCartNumber, verificarSessao } = useContext(CartContext)
    const navigation = useNavigate()
 
    const [products, setProducts] = useState([]);
@@ -47,10 +47,9 @@ export default function Cart() {
          setProducts(productsWithDefaults);
 
       } catch (error) {
-         return;
+         return
       }
    }
-
 
    useEffect(() => {
       getCartItems();
@@ -85,12 +84,22 @@ export default function Cart() {
       );
    }
 
-   function finalizarCompra() {
+
+   async function finalizarCompra() {
+      const sessaoAtiva = await verificarSessao()
+      if (!sessaoAtiva) {
+         navigation(`/UserCount/Login/Cart`, {
+            state: {
+               produtos: selectedItems
+            }
+         })
+         return
+      }
       navigation('/Checkout', {
          state: {
             produtos: selectedItems
          }
-      });
+      })
    }
 
    async function deleteProduct(carrinho_id) {
@@ -118,7 +127,6 @@ export default function Cart() {
          return
       }
    }
-
 
    const selectedItems = products.filter(item => item.checked);
    const isAllSelected = products.length > 0 && products.every(item => item.checked);

@@ -32,6 +32,19 @@ function App() {
    const [suggestons, setSuggestons] = useState(false)
    const [oldSearches, setOldSearches] = useState([])
 
+   async function verificarSessao() {
+      const response = await fetch(
+         "https://banck-end.vercel.app/verificarSessao",
+         {
+            method: "GET",
+            credentials: "include"
+         }
+      )
+      const data = await response.json()
+      return data.success === true
+   }
+
+
    useEffect(() => {
       async function getCartNumber() {
          const formData = new FormData()
@@ -67,14 +80,13 @@ function App() {
          }
       }
       getOldSearches()
-
    }, [])
 
    return (
       <CartContext.Provider value={{
          cartNumber, setCartNumber, productList,
          sidbarAtivo, setSidbarAtivo, oldSearches,
-         suggestons, setSuggestons
+         suggestons, setSuggestons, verificarSessao
       }}>
          <BrowserRouter>
             <Routes>
@@ -92,7 +104,7 @@ function App() {
                      <Route path="Favorites" element={<Favorites actions={'dasktop'} />} />
                   </Route>
 
-                  <Route path="Login" element={<Login />} />
+                  <Route path="Login/:pagin" element={<Login />} />
                   <Route path="Register" element={<Register />} />
                   <Route path="FilterUserCount/:action" element={<FilterUserCount />} />
                </Route>
@@ -109,5 +121,4 @@ function App() {
    )
 
 }
-
 export default App

@@ -35,8 +35,6 @@ export default function UserProfile({ actions }) {
 
       <>
          {loading ? <Loading /> :
-
-            // mobile
             <div className={`profile-container ${actions === 'mobile' ? '' : 'hiden-userProfile'}`}>
                <div className="profile-header-card">
                   <User size={30} className="profile-avata" />

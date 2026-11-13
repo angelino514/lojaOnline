@@ -13,8 +13,8 @@ export default function MyAccount() {
       { item: "Lista de favoritos", icon: Heart, path: "Favorites", action: 'Favorites' }
    ];
 
-   const [section, setSection] = useState(false);
-   const [loading, setLoading] = useState(true);
+   const [section, setSection] = useState(false)
+   const [loading, setLoading] = useState(true)
    const [userdatas, setuserDatas] = useState([])
 
    useEffect(() => {
@@ -67,7 +67,6 @@ export default function MyAccount() {
          <aside className="face">
 
             <nav className="nav-account-items">
-
                <ul className="ul-lidt-account-items">
                   {navAccount.map((item, index) => {
                      const Icon = item.icon;
@@ -86,14 +85,13 @@ export default function MyAccount() {
                   })}
                </ul>
 
-
                {section ? <button className="account-logout" onClick={() => { deleteUserSession() }}>
                   <LogOut size={15} />
                   <span>Terminar sessão</span>
                </button> :
 
                   <button className="account-logout"
-                     onClick={() => { navigate('/UserCount/Login') }}>
+                     onClick={() => { navigate(`/UserCount/Login/${'UserCoount'}`) }}>
                      <LogIn size={15} />
                      <span>Iniciar sessão</span>
                   </button>}
@@ -147,13 +145,11 @@ export default function MyAccount() {
                      </aside>
                   </nav>
                }
-
             </div>
 
             <main className="main-container-account">
                <Outlet />
             </main>
-
          </aside>
       </section>
    );

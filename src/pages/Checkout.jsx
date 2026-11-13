@@ -3,18 +3,32 @@ import { useLocation } from "react-router-dom";
 import { ReceiptText, Info, ShieldCheck } from "lucide-react";
 import "../styles/Checkout.css";
 import Loading from "../components/Loading";
+import CartToastLoader from "../components/CartToastLoader";
+import TextErro from "../components/TextErro";
+import TextSucess from "../components/TextSucess";
+import validateEmail from "../modules/validateEmail";
+import validateName from "../modules/validateText";
+
 
 export default function Checkout() {
 
-   const location = useLocation()
+
    const envios = [
       { id: "economico", nome: "Envio económico", prazo: "15 a 30 dias úteis", preco: 0 },
       { id: "padrao", nome: "Envio padrão", prazo: "7 a 15 dias úteis", preco: 1500 },
       { id: "expresso", nome: "Envio expresso", prazo: "3 a 7 dias úteis", preco: 3000 }
    ];
 
+   const location = useLocation()
    const produtos = location.state?.produtos || []
-   const [loading, setLoading] = useState(true);
+
+
+   const [loading, setLoading] = useState(true)
+   const [loadingCheckout, setLoadingCheckout] = useState(false);
+   const [success, setSuccess] = useState(null)
+   const [message, setmessage] = useState('')
+   const [action, setAction] = useState(null)
+
    const [cliente, setCliente] = useState({
       nome: "",
       email: "",
@@ -68,7 +82,6 @@ export default function Checkout() {
    const formatarPreco = valor =>
       valor.toLocaleString("pt-AO") + " Kz";
 
-
    function atualizarCliente(e) {
       const { name, value } = e.target;
       setCliente(prev => ({
@@ -78,8 +91,20 @@ export default function Checkout() {
    }
 
    async function finalizarPedido(e) {
-
       e.preventDefault();
+
+      if (!cliente.nome || !cliente.email || !cliente.telefone || !cliente.telefone) {
+         setmessage('Preencha todos os campos')
+         setSuccess(false)
+         return
+      }
+
+      if (!validateEmail(cliente.email)) {
+         setmessage('Email Inválido')
+         setSuccess(false)
+         return
+      }
+
       const pedido = {
          produtos,
          pagamento,
@@ -99,6 +124,8 @@ export default function Checkout() {
       dados.append('endereco', cliente.endereco)
 
       try {
+
+         setLoadingCheckout(true)
          const res = await fetch('https://banck-end.vercel.app/pedidos', {
             method: 'POST',
             credentials: 'include',
@@ -106,14 +133,40 @@ export default function Checkout() {
          })
 
          const data = await res.json()
+         if (data.success) {
+            setSuccess(true)
+            setmessage(data.message)
+            return
+         }
+
+         if (!data.success) {
+            setSuccess(false)
+            setmessage(data.message)
+         }
 
       } catch (erro) {
          return
+         return
+      } finally {
+         setLoadingCheckout(false)
       }
    }
 
+   useEffect(() => {
+      if (action === 'cancel' || action === 'continue') {
+         setSuccess(null)
+         setAction(null)
+      }
+   }, [action])
+
    return (
       <>
+
+
+         {loadingCheckout && <CartToastLoader />}
+         {success === false && <TextErro message={message} setAction={setAction} />}
+         {success === true && <TextSucess message={message} setAction={setAction} />}
+
          {loading ? <Loading /> :
             <main className="checkout-container">
 
@@ -135,9 +188,7 @@ export default function Checkout() {
                      <section className="checkout-main">
 
                         {/* CLIENTE */}
-
                         <div className="checkout-card">
-
                            <div className="checkout-section-title">
                               <span className="checkout-number">1</span>
                               <div>
@@ -154,7 +205,7 @@ export default function Checkout() {
                                     name="nome"
                                     value={cliente.nome}
                                     onChange={atualizarCliente}
-                                    required
+
                                  />
                               </div>
 
@@ -165,7 +216,6 @@ export default function Checkout() {
                                     name="email"
                                     value={cliente.email}
                                     onChange={atualizarCliente}
-                                    required
                                  />
                               </div>
 
@@ -175,7 +225,6 @@ export default function Checkout() {
                                     name="telefone"
                                     value={cliente.telefone}
                                     onChange={atualizarCliente}
-                                    required
                                  />
                               </div>
 
@@ -185,7 +234,6 @@ export default function Checkout() {
                                     name="endereco"
                                     value={cliente.endereco}
                                     onChange={atualizarCliente}
-                                    required
                                  />
                               </div>
 

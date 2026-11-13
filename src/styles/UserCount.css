@@ -309,9 +309,22 @@
   line-height: 1.4;
 }
 
+.hiden-loading-dasktop {
+  display: none;
+}
+
 /* Responsividade Mobile */
 @media (max-width: 768px) {
-  
+
+  .hiden-loading-dasktop {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hiden-loading-mobile {
+    display: none;
+  }
+
   .ali-account-page {
     margin-top: 60px;
     padding: 0;

@@ -1,6 +1,6 @@
 import "../styles/Login.css";
 import { Mail, Lock, ArrowRight, ShieldCheck, Eye, EyeOff } from "lucide-react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from 'react'
 import validateEmail from "../modules/validateEmail";
 import CartToastLoader from "./CartToastLoader";
@@ -16,6 +16,13 @@ export default function Login() {
    const [message, setMessage] = useState('')
    const [action, setAction] = useState(null)
    const [typeText, setTypeText] = useState(false)
+
+   const { pagin } = useParams()
+   const location = useLocation()
+   const produtos = location.state?.produtos || []
+
+   console.log(produtos)
+
 
    const navigation = useNavigate()
    const [userData, setUserData] = useState({
@@ -63,6 +70,14 @@ export default function Login() {
 
          const result = await response.json()
          if (result.success) {
+            if (pagin === 'Cart') {
+               navigation('/Checkout', {
+                  state: {
+                     produtos: produtos
+                  }
+               })
+               return
+            }
             navigation('/UserCount/MyAccount/UserProfile')
             return
          }
@@ -92,7 +107,6 @@ export default function Login() {
          {loading && <CartToastLoader />}
          {sucess === false && <TextErro message={message} setAction={setAction} />}
          {sucess === true && <TextSucess message={message} setAction={setAction} />}
-
 
          <div className="ali-login-page">
             <div className="login-container">
